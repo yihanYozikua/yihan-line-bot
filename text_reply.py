@@ -16,7 +16,7 @@ def text_reply_message(user_message):
     if(user_message == "test"):
         output_message = "This is a test."
     elif(user_message == "push"):
-        text_push.text_push_message("This is a Push test.")
+        # text_push.text_push_message("This is a Push test.")
         output_message = "This is Push test reply."
     else:  
         output_message = user_message  

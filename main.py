@@ -66,7 +66,7 @@ def handle_message(event):
 
     if event.message.text.lower() == "speed" :
         output_message = ("【收到訊息時間】\n{} 秒\n【處理訊息時間】\n{} 秒".format(message_get_time-message_send_time,float(time.time())-message_get_time))
-        output_message = text_reply.text_reply_message(user_message)
+        # output_message = text_reply.text_reply_message(user_message)
         line_bot_api.reply_message(event.reply_token, output_message)
 
     if msg_type == "sticker":
