@@ -1,3 +1,11 @@
+#====================================================
+# text_push.py
+# YIHAN LINE BOT
+
+# Created by YIHAN HISAO on May 21, 2021.
+# Copyright © 2021 YIHAN HSIAO. All rights reserved.
+#====================================================
+
 from linebot import (
     LineBotApi, WebhookHandler
 )

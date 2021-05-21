@@ -1,3 +1,11 @@
+#====================================================
+# main.py
+# YIHAN LINE BOT
+
+# Created by YIHAN HISAO on May 21, 2021.
+# Copyright © 2021 YIHAN HSIAO. All rights reserved.
+#====================================================
+
 from flask import Flask, request, abort
 
 from linebot import (
@@ -18,11 +26,11 @@ import math
 import time
 import datetime
 
-#---------------- self define module ----------------
+#---------------- custom module ----------------
 import text_push as text_push
 import text_reply as text_reply
 
-#---------------- self define variables ----------------
+#---------------- custom import ----------------
 # from mykey import *
 from config import *
 
@@ -36,13 +44,16 @@ handler = WebhookHandler(CHANNEL_SECRET)
 
 app = Flask(__name__)
 
-# 監聽所有來自 /callback 的 Post Request
+# monitor all the Post Requests come from /callback
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
     # get request body as text
     body = request.get_data(as_text=True)
+    print("============= BODY =============")
+    print(body)
+    print("================================")
     app.logger.info("Request body: " + body)
     # handle webhook body
     try:
@@ -52,34 +63,25 @@ def callback():
     return 'OK'
 
 
-# 處理訊息
+# handle messages
 @handler.add(MessageEvent)
 def handle_message(event):
     print(event)
-    message_send_time = float(event.timestamp)/1000
-    message_get_time = float(time.time())
-    msg_type = event.message.type
 
-    if event.message.text == "info":
-        output_message = TextSendMessage(text=str(event))  
-        line_bot_api.reply_message(event.reply_token, output_message)
-
-    if event.message.text.lower() == "speed" :
-        output_message = ("【收到訊息時間】\n{} 秒\n【處理訊息時間】\n{} 秒".format(message_get_time-message_send_time,float(time.time())-message_get_time))
-        # output_message = text_reply.text_reply_message(user_message)
-        line_bot_api.reply_message(event.reply_token, output_message)
-
-    if msg_type == "sticker":
-        output_message = StickerSendMessage(package_id='2',sticker_id=str(random.randint(140,180)))
+    if event.message.type == "sticker":
+        output_message = StickerSendMessage(
+            package_id='11537',
+            sticker_id=str(random.randint(52002734,52002773))
+        )
+        # output_message = TextSendMessage("u sends me a sticker")
         line_bot_api.reply_message(event.reply_token, output_message) 
 
-    elif msg_type == "text":
+    elif event.message.type == "text":
         user_message = event.message.text 
         output_message = text_reply.text_reply_message(user_message)
         line_bot_api.reply_message(event.reply_token, output_message)
 
     
-
 
 import os
 if __name__ == "__main__":

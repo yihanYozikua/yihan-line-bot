@@ -1,0 +1,102 @@
+{
+  "type": "bubble",
+  "hero": {
+    "type": "image",
+    "url": "https://i.imgur.com/qk5dlO9.jpg",
+    "size": "full",
+    "aspectRatio": "4:3",
+    "aspectMode": "cover"
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "YIHAN HSIAO",
+        "margin": "sm",
+        "weight": "bold",
+        "color": "#404040"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "編織星空的人",
+            "size": "xs",
+            "margin": "xs",
+            "color": "#8c8c8c"
+          }
+        ],
+        "margin": "sm",
+        "spacing": "lg",
+        "cornerRadius": "none",
+        "offsetBottom": "sm"
+      },
+      {
+        "type": "box",
+        "layout": "baseline",
+        "contents": [
+          {
+            "type": "icon",
+            "url": "https://i.imgur.com/ZFffQK7.png",
+            "size": "xl",
+            "offsetTop": "sm"
+          },
+          {
+            "type": "text",
+            "text": "newy860318@gmail.com",
+            "offsetStart": "md",
+            "color": "#808080"
+          }
+        ],
+        "alignItems": "center",
+        "justifyContent": "center",
+        "spacing": "lg",
+        "margin": "md"
+      },
+      {
+        "type": "box",
+        "layout": "baseline",
+        "contents": [
+          {
+            "type": "icon",
+            "url": "https://i.imgur.com/LbqyY1o.png",
+            "size": "xl",
+            "offsetTop": "sm"
+          },
+          {
+            "type": "text",
+            "text": "furrysix.photo",
+            "offsetStart": "md",
+            "color": "#808080",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://www.instagram.com/accounts/login/"
+            }
+          }
+        ],
+        "alignItems": "center",
+        "justifyContent": "center",
+        "spacing": "lg"
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "See my Github",
+          "uri": "https://github.com/yihanYozikua"
+        }
+      }
+    ]
+  }
+}
