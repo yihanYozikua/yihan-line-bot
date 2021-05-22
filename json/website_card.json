@@ -11,7 +11,7 @@
     "aspectMode": "cover",
     "action": {
       "type": "uri",
-      "label": "Action",
+      "label": "go to website",
       "uri": "https://linecorp.com"
     }
   },
@@ -61,6 +61,11 @@
             "type": "box",
             "layout": "baseline",
             "margin": "lg",
+            "action": {
+              "type": "uri",
+              "label": "article url",
+              "uri": "https://linecorp.com"
+            },
             "contents": [
               {
                 "type": "text",
@@ -81,6 +86,11 @@
           {
             "type": "box",
             "layout": "baseline",
+            "action": {
+              "type": "uri",
+              "label": "article url",
+              "uri": "https://linecorp.com"
+            },
             "contents": [
               {
                 "type": "text",
