@@ -29,7 +29,7 @@ import datetime
 #---------------- custom module ----------------
 import text_push as text_push
 import text_reply as text_reply
-
+import RSSfeed as RSSfeed
 #---------------- custom import ----------------
 # from mykey import *
 from config import *
