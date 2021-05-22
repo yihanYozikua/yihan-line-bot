@@ -107,10 +107,6 @@
     "layout": "vertical",
     "contents": [
       {
-        "type": "spacer",
-        "size": "xxl"
-      },
-      {
         "type": "button",
         "action": {
           "type": "message",

@@ -73,24 +73,20 @@ def handle_message(event):
             package_id='11537',
             sticker_id=str(random.randint(52002734,52002773))
         )
-        # output_message = TextSendMessage("u sends me a sticker")
         line_bot_api.reply_message(event.reply_token, output_message) 
 
-    elif event.message.type == "text":
 
+    elif event.message.type == "text":
         try:
             req = requests.get( event.message.text )
             if req.status_code == 200:
-                print('Website exists')
                 user_message = event.message.text
                 output_message = text_reply.text_reply_message(user_message)
             else:
-                print('Website not exist')
-                output_message = TextSendMessage(text="這個不是正確的網站URL唷，請再檢查一下這個連結是否真的存在～～")
+                output_message = TextSendMessage(text="Oops找不到網站耶😨 請再檢查一下這個連結是否真的存在～～")
                 
         except requests.exceptions.RequestException as e:
-            print('Website not exist')
-            output_message = TextSendMessage(text="這個不是正確的網站URL唷，請再檢查一下這個連結是否真的存在～～")
+            output_message = TextSendMessage(text="這個不是正確的URL唷，請再檢查一下這個連結是否真的存在～～")
         
         line_bot_api.reply_message(event.reply_token, output_message)
         

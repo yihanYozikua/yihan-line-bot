@@ -21,14 +21,20 @@ import json
 #---------------- end of define module ----------------
 
 def text_reply_message(user_message):
-    if( (user_message == "test") or (user_message == "Test") ):
-        output_message = "This is a test."
 
-    elif(user_message == "profile"):
-        FlexMessage = json.load( open("./json/card.json", 'r', encoding = 'utf-8') )
-        output_message = FlexSendMessage( 'profile', FlexMessage )
-        return output_message
-    else:  
-        output_message = user_message  
+    
+    FlexMessage = json.load( open("./json/website_card.json", 'r', encoding = 'utf-8') )
+    output_message = FlexSendMessage( 'web', FlexMessage )
+    return output_message
+
+    # if( (user_message == "test") or (user_message == "Test") ):
+    #     output_message = "This is a test."
+
+    # elif(user_message == "profile"):
+    #     FlexMessage = json.load( open("./json/card.json", 'r', encoding = 'utf-8') )
+    #     output_message = FlexSendMessage( 'profile', FlexMessage )
+    #     return output_message
+    # else:  
+    #     output_message = user_message  
 
     return TextSendMessage(text=output_message)
