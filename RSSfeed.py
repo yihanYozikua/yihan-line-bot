@@ -10,15 +10,17 @@ def findRSS( site_url ):
   j = json.loads(r.text)
   print("length of = ")
   print( len(j) )
-  if len(j) > 1:
-    RSS_url = j[1]["self_url"]
-  else:
-    RSS_url = j[0]["self_url"]
-  print( RSS_url )
+  # if len(j) > 1:
+  #   RSS_url = j[1]["self_url"]
+  # else:
+  #   RSS_url = j[0]["self_url"]
+  # print( RSS_url )
+  RSS_url = j[0]["self_url"]
+  
 
   ### Find keys and values
   NewsFeed = feedparser.parse(RSS_url)
-  print(NewsFeed)
+  # print(NewsFeed)
   # print( len(NewsFeed['entries']) )
   # print( NewsFeed['entries'] )
 

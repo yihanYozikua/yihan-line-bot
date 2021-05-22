@@ -52,10 +52,10 @@ def text_reply_message(user_message):
     ## image to show = ??
 
     web_info = RSSfeed.findRSS( user_message ) # get website info
-    for i in range( len(web_info) ):
-        print( web_info[i]['published'] ) # publish date of the article
-        print( web_info[i]['title'] ) # title of the article
-        print( web_info[i]['links'][0]['href'] ) # link of the article
+    # for i in range( len(web_info) ):
+    #     print( web_info[i]['published'] ) # publish date of the article
+    #     print( web_info[i]['title'] ) # title of the article
+    #     print( web_info[i]['links'][0]['href'] ) # link of the article
     json_file_name = "newfile.json"
     create_card_json(web_info, json_file_name, user_message)
 

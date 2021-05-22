@@ -25,7 +25,8 @@ TARGET_PUSH_ID = PUSH_TARGET_ID
 
 #---------------------------------------------------
 
-def text_push_message(msg):
+def text_push_message(msg, userId):
 	output_message = TextSendMessage(text=msg)
-	line_bot_api.push_message(PUSH_TARGET_ID, output_message)
+	# line_bot_api.push_message(PUSH_TARGET_ID, output_message)
+	line_bot_api.push_message(userId, output_message)
 

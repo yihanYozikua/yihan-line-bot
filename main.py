@@ -48,9 +48,9 @@ def callback():
     signature = request.headers['X-Line-Signature']
     # get request body as text
     body = request.get_data(as_text=True)
-    # print("============= BODY =============")
-    # print(body)
-    # print("================================")
+    print("============= BODY =============")
+    print(body)
+    print("================================")
     app.logger.info("Request body: " + body)
     # handle webhook body
     try:
@@ -64,6 +64,8 @@ def callback():
 @handler.add(MessageEvent)
 def handle_message(event):
     # print(event)
+    event_json = json.loads(str(event))
+    userId = event_json["source"]["userId"] # get user id
 
     if event.message.type == "sticker":
         output_message = StickerSendMessage(
