@@ -70,7 +70,8 @@ def handle_message(event):
     # userId = event_json["source"]["userId"] # get user id
     userId = event.source.user_id   # get user's id
     line_bot_api.get_profile(userId) # get user's profile ## displayName | language | pictureUrl | userId
-    tutorial_key_word = ".*開始試用.*"
+    # tutorial_key_word = ".*開始試用.*"
+    tutorial_key_word = [".*開始試用.*"]
     reply_message_arr = [] # make sure that the reply_message_array always be empty when init
 
     if event.message.type == "sticker":

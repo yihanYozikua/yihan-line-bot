@@ -20,14 +20,16 @@ import json
 import text_push as text_push
 import RSSfeed as RSSfeed
 import tools as tools
+import bot_functions as bot_functions
 
 from config import *
+
 #---------------- global variables ----------------
 user_status = "tutorial" # set user's usage status, default = tutorial, other = common_using
 #---------------------------------------------------
 
         
-        
+
 
 def text_reply_message(user_message):
     #---------------------- Info recording ---------------------
@@ -39,14 +41,10 @@ def text_reply_message(user_message):
     ## image to show = ??
     #-----------------------------------------------------------
 
-    web_info = RSSfeed.findRSS( user_message ) # get website info
-    json_file_name = "newfile.json"
-    tools.create_tracker_card_json(web_info, json_file_name, user_message) # use web info to modify the card's info
-
     return_message_array = []
-
-    FlexMessage = json.load( open("./json/"+json_file_name, 'r', encoding = 'utf-8') )
-    return_message_array.append( FlexSendMessage( 'web', FlexMessage ) )
+    
+    # user send new URL
+    return_message_array = bot_functions.add_new_tracker( user_message )
 
     # if the user is in "tutorial status", then also reply the guiding text
     if (user_status == "tutorial"):
@@ -63,3 +61,4 @@ def text_reply_message(user_message):
     #     output_message = FlexSendMessage( 'profile', FlexMessage )
     #     return output_message
     # return TextSendMessage(text=output_message)
+
