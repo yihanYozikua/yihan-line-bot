@@ -100,7 +100,7 @@ def handle_message(event):
                 print("start tutorial")
                 # start tutorial
                 reply_message_arr.append( TextSendMessage(text="若您使用的是電腦，請您移至手機版操作唷！") )
-                reply_message_arr.append( TextSendMessage(text='請按下以下按鈕以加入範例網誌URL',
+                reply_message_arr.append( TextSendMessage(text='請「按下面那個按鈕」以加入範例網誌URL，也可以「使用鍵盤輸入」唷！',
                                                           quick_reply=QuickReply(items=[
                                                                         QuickReplyButton(
                                                                             action=MessageAction(

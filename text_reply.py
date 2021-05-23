@@ -76,17 +76,18 @@ def text_reply_message(user_message):
                                                                                     label="查看追蹤清單", 
                                                                                     text="查看追蹤清單"))
                                             ])) )
+        ### Show_tracker_list
+        elif( user_message == action_key_word[1] ):
+            
+            # if the user is in "tutorial status", then also reply the guiding text
+            if (user_status == "tutorial"):
+                return_message_array.append( TextSendMessage(text="已成功將網誌加入追蹤！請按上則訊息中的「按我看文章列表」以查看最新文章 ") )
         else:
             return_message_array.append( TextSendMessage(text="Show_articles_card else"))
 
     return return_message_array # because the amount of reply sometimes > 1, so return the array type
 
-        ### Show_tracker_list
-        # elif( user_message == action_key_word[1] ):
-            
-        #     # if the user is in "tutorial status", then also reply the guiding text
-        #     if (user_status == "tutorial"):
-        #         return_message_array.append( TextSendMessage(text="已成功將網誌加入追蹤！請按上則訊息中的「按我看文章列表」以查看最新文章 ") )
+        
 
 
         ### Delete_tracker
