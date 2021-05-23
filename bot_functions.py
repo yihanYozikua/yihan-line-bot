@@ -44,7 +44,7 @@ app = Flask(__name__)
 # trigger by existing "URL"
 def add_new_tracker( web_url ): # return a "FlexMssage" 
   web_info = RSSfeed.findRSS( web_url ) # get website info
-  json_file_name = "newfile.json" # new json file inorder to store new tracker info
+  json_file_name = "new.json" # new json file inorder to store new tracker info
   tools.create_tracker_card_json(web_info, json_file_name, web_url) # create new tracker card
 
   return_array = []
@@ -55,7 +55,7 @@ def add_new_tracker( web_url ): # return a "FlexMssage"
 # trigger by text "{Website name}文章列表"
 def show_articles_card( web_name ):
   return_array = []
-  
+
   ### Show articles' cards ###
 
   return return_array
@@ -66,4 +66,8 @@ def show_tracker_list():
 
 # trigger by text "取消追蹤{Website name}"
 def delete_tracker():
+  ### Check if the user really want to delete the tracker, or he/she just makes a mistake
+    ### if confirm "delete"
+
+    ### else
   return

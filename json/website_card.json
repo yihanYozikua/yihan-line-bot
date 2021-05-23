@@ -130,10 +130,9 @@
       {
         "type": "button",
         "action": {
-          "type": "postback",
+          "type": "message",
           "label": "取消追蹤",
-          "data": "delete",
-          "displayText": "取消追蹤 {某網頁}"
+          "text": "取消追蹤{Web Name}"
         },
         "color": "#ffcccc",
         "margin": "md"

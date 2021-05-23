@@ -48,18 +48,19 @@ def text_reply_message(user_message):
     #-----------------------------------------------------------
     return_message_array = []
     try:
-        ### Add_new_tracker
+        ### 加入追蹤 Add_new_tracker
         if requests.get( user_message ).status_code == 200:
             # user send new URL
             return_message_array = bot_functions.add_new_tracker( user_message )
 
             # if the user is in "tutorial status", then also reply the guiding text
             if (user_status == "tutorial"):
-                return_message_array.append( TextSendMessage(text="已成功將網誌加入追蹤！請按上則訊息中的「按我看文章列表」以查看最新文章 ") )
+                return_message_array.append( TextSendMessage(text="已成功將網誌加入追蹤！") )
+                return_message_array.append( TextSendMessage(text="請按上上則訊息中的「按我看文章列表」以查看最新文章") )
 
     except requests.exceptions.RequestException as e: # typeof(URL) != URL
         
-        ### Show_articles_card
+        ### 查看最新文章 Show_articles_card =================================
         if( tools.analyze_text(user_message, action_key_word[0]) ):
             # split the "user_message" to get which website that user want to get
             ### split user_message ###
@@ -69,33 +70,45 @@ def text_reply_message(user_message):
 
             # if the user is in "tutorial status", then also reply the guiding text
             if (user_status == "tutorial"):
-                return_message_array.append( TextSendMessage(text="成功看到最新文章列表囉！請按以下按鈕以查看追蹤清單",
+                return_message_array.append( TextSendMessage(text="成功看到這個網誌的最新文章列表囉！") )
+                return_message_array.append( TextSendMessage(text="請按以下按鈕以查看追蹤清單",
                                                             quick_reply=QuickReply(items=[
                                                                             QuickReplyButton(
                                                                                 action=MessageAction(
-                                                                                    label="查看追蹤清單", 
-                                                                                    text="查看追蹤清單"))
+                                                                                    label="查看追蹤列表", 
+                                                                                    text="查看追蹤列表"))
                                             ])) )
-        ### Show_tracker_list
-        elif( user_message == action_key_word[1] ):
+        
+
+        ### 查看追蹤列表 Show_tracker_list =================================
+        elif( tools.analyze_text(user_message, action_key_word[1]) ):
             
             # if the user is in "tutorial status", then also reply the guiding text
             if (user_status == "tutorial"):
-                return_message_array.append( TextSendMessage(text="已成功將網誌加入追蹤！請按上則訊息中的「按我看文章列表」以查看最新文章 ") )
+                return_message_array.append( TextSendMessage(text="成功看到列表了！以上這些就是您目前已追蹤的網誌唷～") )
+                return_message_array.append( TextSendMessage(text="請按上則訊息中的「取消追蹤」以取消追蹤此網誌") )
+        
+
+        ### 取消追蹤 Delete_tracker =================================
+        elif( tools.analyze_text(user_message, action_key_word[2]) ):
+            
+
+            # if the user is in "tutorial status", then also reply the guiding text
+            if (user_status == "tutorial"):
+                return_message_array.append( TextSendMessage(text="已成功刪除一個追蹤項目！") )
+                return_message_array.append( TextSendMessage(text="恭喜呀～您已完成試用！現在，試著加入自己想追蹤的網誌吧～") )
+
+
+        ### 不認識的指令 Exception Handler
         else:
-            return_message_array.append( TextSendMessage(text="Show_articles_card else"))
+            return_message_array.append( TextSendMessage(text="咦這個指令沒看過耶"))
 
     return return_message_array # because the amount of reply sometimes > 1, so return the array type
 
         
 
 
-        ### Delete_tracker
-        # elif( user_message == action_key_word[2] ):
-
-        #     # if the user is in "tutorial status", then also reply the guiding text
-        #     if (user_status == "tutorial"):
-        #         return_message_array.append( TextSendMessage(text="已成功將網誌加入追蹤！請按上則訊息中的「按我看文章列表」以查看最新文章 ") )
+        
             
 
     
