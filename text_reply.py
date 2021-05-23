@@ -1,5 +1,6 @@
 #====================================================
 # text_reply.py
+## decide the response according to the input text
 # YIHAN LINE BOT
 
 # Created by YIHAN HISAO on May 21, 2021.
@@ -15,6 +16,8 @@ from linebot.exceptions import (
 from linebot.models import *
 
 import json
+import requests
+import re
 
 #---------------- custom module ----------------
 import text_push as text_push
@@ -25,10 +28,13 @@ import bot_functions as bot_functions
 from config import *
 
 #---------------- global variables ----------------
-user_status = "tutorial" # set user's usage status, default = tutorial, other = common_using
-#---------------------------------------------------
 
-        
+# set user's usage status, default = tutorial, other = common_using
+user_status = "tutorial" 
+
+# key words for detecting what action is it
+action_key_word = [".*文章列表.*", ".*查看追蹤列表.*", ".*取消追蹤.*"] 
+#---------------------------------------------------
 
 
 def text_reply_message(user_message):
@@ -42,23 +48,30 @@ def text_reply_message(user_message):
     #-----------------------------------------------------------
 
     return_message_array = []
-    
-    # user send new URL
-    return_message_array = bot_functions.add_new_tracker( user_message )
 
-    # if the user is in "tutorial status", then also reply the guiding text
-    if (user_status == "tutorial"):
-        return_message_array.append( TextSendMessage(text="已成功將網誌加入追蹤！請按上則訊息中的「按我看文章列表」以查看最新文章 ") )
+
+    ### Add_new_tracker
+    if( requests.get(user_message).status_code == 200 ):
+        # user send new URL
+        return_message_array = bot_functions.add_new_tracker( user_message )
+
+        # if the user is in "tutorial status", then also reply the guiding text
+        if (user_status == "tutorial"):
+            return_message_array.append( TextSendMessage(text="已成功將網誌加入追蹤！請按上則訊息中的「按我看文章列表」以查看最新文章 ") )
+    
+    
+    ### Show_articles_card
+    # elif( user_message == action_key_word[0] ):
+        
+
+    ### Show_tracker_list
+    # elif( user_message == action_key_word[1] ):
+
+    ### Delete_tracker
+    # elif( user_message == action_key_word[2] ):
+    
+    
 
     
     return return_message_array # because the amount of reply sometimes > 1, so return the array type
-
-    # if( (user_message == "test") or (user_message == "Test") ):
-    #     output_message = "This is a test."
-
-    # elif(user_message == "profile"):
-    #     FlexMessage = json.load( open("./json/card.json", 'r', encoding = 'utf-8') )
-    #     output_message = FlexSendMessage( 'profile', FlexMessage )
-    #     return output_message
-    # return TextSendMessage(text=output_message)
 

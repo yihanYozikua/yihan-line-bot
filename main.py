@@ -70,8 +70,7 @@ def handle_message(event):
     # userId = event_json["source"]["userId"] # get user id
     userId = event.source.user_id   # get user's id
     line_bot_api.get_profile(userId) # get user's profile ## displayName | language | pictureUrl | userId
-    # tutorial_key_word = ".*開始試用.*"
-    tutorial_key_word = [".*開始試用.*"]
+    tutorial_key_word = ".*開始試用.*"
     reply_message_arr = [] # make sure that the reply_message_array always be empty when init
 
     if event.message.type == "sticker":
@@ -89,7 +88,6 @@ def handle_message(event):
                 user_message = event.message.text
                 # reply_message_arr.append( text_reply.text_reply_message(user_message) )
                 reply_message_arr = text_reply.text_reply_message(user_message)
-
             else:
                 reply_message_arr.append( TextSendMessage(text="Oops找不到網站耶😨 請再檢查一下這個連結是否真的存在～～") )
                 
@@ -106,8 +104,9 @@ def handle_message(event):
                                                                                 text="https://chloe981219.medium.com/"))
                                         ])))
             else:
-                reply_message_arr.append( TextSendMessage(text="這個不是正確的URL唷，請再檢查一下這個連結是否真的存在～～") )
-        
+                # reply_message_arr.append( TextSendMessage(text="這個不是正確的URL唷，請再檢查一下這個連結是否真的存在～～") )
+                reply_message_arr = text_reply.text_reply_message(user_message)
+
         line_bot_api.reply_message(event.reply_token, reply_message_arr)
         
         
