@@ -40,16 +40,20 @@ def text_reply_message(user_message):
     #-----------------------------------------------------------
 
     web_info = RSSfeed.findRSS( user_message ) # get website info
-    # for i in range( len(web_info) ):
-    #     print( web_info[i]['published'] ) # publish date of the article
-    #     print( web_info[i]['title'] ) # title of the article
-    #     print( web_info[i]['links'][0]['href'] ) # link of the article
     json_file_name = "newfile.json"
     tools.create_tracker_card_json(web_info, json_file_name, user_message) # use web info to modify the card's info
 
+    return_message_array = []
+
     FlexMessage = json.load( open("./json/"+json_file_name, 'r', encoding = 'utf-8') )
-    output_message = FlexSendMessage( 'web', FlexMessage )
-    return output_message
+    return_message_array.append( FlexSendMessage( 'web', FlexMessage ) )
+
+    # if the user is in "tutorial status", then also reply the guiding text
+    if (user_status == "tutorial"):
+        return_message_array.append( TextSendMessage(text="已成功將網誌加入追蹤！請按上則訊息中的「按我看文章列表」以查看最新文章 ") )
+
+    
+    return return_message_array # because the amount of reply sometimes > 1, so return the array type
 
     # if( (user_message == "test") or (user_message == "Test") ):
     #     output_message = "This is a test."
@@ -58,7 +62,4 @@ def text_reply_message(user_message):
     #     FlexMessage = json.load( open("./json/card.json", 'r', encoding = 'utf-8') )
     #     output_message = FlexSendMessage( 'profile', FlexMessage )
     #     return output_message
-    # else:  
-    #     output_message = user_message  
-
-    return TextSendMessage(text=output_message)
+    # return TextSendMessage(text=output_message)
