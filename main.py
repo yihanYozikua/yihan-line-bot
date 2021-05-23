@@ -47,9 +47,9 @@ def callback():
     signature = request.headers['X-Line-Signature']
     # get request body as text
     body = request.get_data(as_text=True)
-    print("============= BODY =============")
-    print(body)
-    print("================================")
+    # print("============= BODY =============")
+    # print(body)
+    # print("================================")
     app.logger.info("Request body: " + body)
     # handle webhook body
     try:
@@ -62,13 +62,12 @@ def callback():
 # handle messages
 @handler.add(MessageEvent)
 def handle_message(event):
-    # print(event)
+    print(event)
     event_json = json.loads(str(event))
 
     # PARAMETERS
     userId = event_json["source"]["userId"] # get user id
-    tutorial_key_word = ".*開始使用.*"
-
+    tutorial_key_word = ".*開始試用.*"
 
     if event.message.type == "sticker":
         output_message = StickerSendMessage(
@@ -79,27 +78,24 @@ def handle_message(event):
 
 
     elif event.message.type == "text":
-        # if the input text is tutorial
-        tutorial_or_not = tools.analyze_text( tutorial_key_word, event.message.text )
-        if tutorial_or_not:
-            # start tutorial
-            output_message = TextSendMessage(text="試用start!")
-            line_bot_api.reply_message(event.reply_token, output_message)
-
-        else:
-            # if the input text is url
-            try:
-                req = requests.get( event.message.text )
-                if req.status_code == 200:
-                    user_message = event.message.text
-                    output_message = text_reply.text_reply_message(user_message)
-                else:
-                    output_message = TextSendMessage(text="Oops找不到網站耶😨 請再檢查一下這個連結是否真的存在～～")
-                    
-            except requests.exceptions.RequestException as e:
+        try: # typeof(URL) = URL
+            req = requests.get( event.message.text )
+            if req.status_code == 200:
+                user_message = event.message.text
+                output_message = text_reply.text_reply_message(user_message)
+            else:
+                output_message = TextSendMessage(text="Oops找不到網站耶😨 請再檢查一下這個連結是否真的存在～～")
+                
+        except requests.exceptions.RequestException as e: # typeof(URL) != URL
+            tutorial_or_not = tools.analyze_text( event.message.text, str(tutorial_key_word) ) # analyze if the input text = tutorial
+            if tutorial_or_not: # input text = tutorial
+                # start tutorial
+                output_message = TextSendMessage(text="試用start！")
+                line_bot_api.reply_message(event.reply_token, output_message)
+            else:
                 output_message = TextSendMessage(text="這個不是正確的URL唷，請再檢查一下這個連結是否真的存在～～")
-            
-            line_bot_api.reply_message(event.reply_token, output_message)
+        
+        line_bot_api.reply_message(event.reply_token, output_message)
         
         
 

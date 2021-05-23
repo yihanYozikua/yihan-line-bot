@@ -42,6 +42,6 @@ def analyze_text( input_text, pattern ): # find if the input text is matched to 
     return analysis
 
 # if __name__ == "__main__":
-#   text = "開始使用 加入追蹤"
-#   result = analyze_text( text, ".*開始使用.*" )
+#   text = "開始試用 加入追蹤"
+#   result = analyze_text( text, ".*開始試用.*" )
 #   print( result )
