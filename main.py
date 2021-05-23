@@ -70,7 +70,7 @@ def handle_message(event):
     # userId = event_json["source"]["userId"] # get user id
     userId = event.source.user_id   # get user's id
     line_bot_api.get_profile(userId) # get user's profile ## displayName | language | pictureUrl | userId
-    tutorial_key_word = ".*開始試用.*"
+    start_tutorial_key_word = ".*開始試用.*"
     reply_message_arr = [] # make sure that the reply_message_array always be empty when init
 
     if event.message.type == "sticker":
@@ -85,15 +85,19 @@ def handle_message(event):
         try: # typeof(URL) = URL
             req = requests.get( event.message.text )
             if req.status_code == 200:
+                print("req = 200")
                 user_message = event.message.text
                 # reply_message_arr.append( text_reply.text_reply_message(user_message) )
                 reply_message_arr = text_reply.text_reply_message(user_message)
             else:
+                print("not exist")
                 reply_message_arr.append( TextSendMessage(text="Oops找不到網站耶😨 請再檢查一下這個連結是否真的存在～～") )
                 
         except requests.exceptions.RequestException as e: # typeof(URL) != URL
-            tutorial_or_not = tools.analyze_text( event.message.text, str(tutorial_key_word) ) # analyze if the input text = tutorial
-            if tutorial_or_not: # input text = tutorial
+            # analyze if the input text = tutorial
+            start_tutorial_or_not = tools.analyze_text( event.message.text, str(start_tutorial_key_word) )
+            if start_tutorial_or_not: # input text = tutorial
+                print("start tutorial")
                 # start tutorial
                 reply_message_arr.append( TextSendMessage(text="若您使用的是電腦，請您移至手機版操作唷！") )
                 reply_message_arr.append( TextSendMessage(text='請按下以下按鈕以加入範例網誌URL',
@@ -104,8 +108,9 @@ def handle_message(event):
                                                                                 text="https://chloe981219.medium.com/"))
                                         ])))
             else:
+                print("action try")
                 # reply_message_arr.append( TextSendMessage(text="這個不是正確的URL唷，請再檢查一下這個連結是否真的存在～～") )
-                reply_message_arr = text_reply.text_reply_message(user_message)
+                reply_message_arr = text_reply.text_reply_message( event.message.text )
 
         line_bot_api.reply_message(event.reply_token, reply_message_arr)
         

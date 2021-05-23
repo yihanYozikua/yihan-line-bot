@@ -46,32 +46,74 @@ def text_reply_message(user_message):
     ## articles' urls = web_info[nth article]['links'][0]['href']
     ## image to show = ??
     #-----------------------------------------------------------
-
     return_message_array = []
+    try:
+        ### Add_new_tracker
+        if requests.get( user_message ).status_code == 200:
+            # user send new URL
+            return_message_array = bot_functions.add_new_tracker( user_message )
 
+            # if the user is in "tutorial status", then also reply the guiding text
+            if (user_status == "tutorial"):
+                return_message_array.append( TextSendMessage(text="已成功將網誌加入追蹤！請按上則訊息中的「按我看文章列表」以查看最新文章 ") )
 
-    ### Add_new_tracker
-    if( requests.get(user_message).status_code == 200 ):
-        # user send new URL
-        return_message_array = bot_functions.add_new_tracker( user_message )
-
-        # if the user is in "tutorial status", then also reply the guiding text
-        if (user_status == "tutorial"):
-            return_message_array.append( TextSendMessage(text="已成功將網誌加入追蹤！請按上則訊息中的「按我看文章列表」以查看最新文章 ") )
-    
-    
-    ### Show_articles_card
-    # elif( user_message == action_key_word[0] ):
+    except requests.exceptions.RequestException as e: # typeof(URL) != URL
         
+        ### Show_articles_card
+        if( tools.analyze_text(user_message, action_key_word[0]) ):
+            # split the "user_message" to get which website that user want to get
+            ### split user_message ###
 
-    ### Show_tracker_list
-    # elif( user_message == action_key_word[1] ):
+            # call function to get articles' cards
+            return_message_array = bot_functions.show_articles_card( user_message )
 
-    ### Delete_tracker
-    # elif( user_message == action_key_word[2] ):
-    
-    
+            # if the user is in "tutorial status", then also reply the guiding text
+            if (user_status == "tutorial"):
+                return_message_array.append( TextSendMessage(text="成功看到最新文章列表囉！請按以下按鈕以查看追蹤清單",
+                                                            quick_reply=QuickReply(items=[
+                                                                            QuickReplyButton(
+                                                                                action=MessageAction(
+                                                                                    label="查看追蹤清單", 
+                                                                                    text="查看追蹤清單"))
+                                            ])) )
+        else:
+            return_message_array.append( TextSendMessage(text="Show_articles_card else"))
 
-    
     return return_message_array # because the amount of reply sometimes > 1, so return the array type
+
+        ### Show_tracker_list
+        # elif( user_message == action_key_word[1] ):
+            
+        #     # if the user is in "tutorial status", then also reply the guiding text
+        #     if (user_status == "tutorial"):
+        #         return_message_array.append( TextSendMessage(text="已成功將網誌加入追蹤！請按上則訊息中的「按我看文章列表」以查看最新文章 ") )
+
+
+        ### Delete_tracker
+        # elif( user_message == action_key_word[2] ):
+
+        #     # if the user is in "tutorial status", then also reply the guiding text
+        #     if (user_status == "tutorial"):
+        #         return_message_array.append( TextSendMessage(text="已成功將網誌加入追蹤！請按上則訊息中的「按我看文章列表」以查看最新文章 ") )
+            
+
+    
+    
+    # ### Add_new_tracker
+    # if( requests.get(user_message).status_code == 200 ):
+    #     # user send new URL
+    #     return_message_array = bot_functions.add_new_tracker( user_message )
+
+    #     # if the user is in "tutorial status", then also reply the guiding text
+    #     if (user_status == "tutorial"):
+    #         return_message_array.append( TextSendMessage(text="已成功將網誌加入追蹤！請按上則訊息中的「按我看文章列表」以查看最新文章 ") )
+    
+    
+    
+
+    
+    
+
+    
+    
 
