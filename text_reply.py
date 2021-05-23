@@ -19,26 +19,29 @@ import json
 #---------------- custom module ----------------
 import text_push as text_push
 import RSSfeed as RSSfeed
+import tools as tools
+
+from config import *
 #---------------- end of define module ----------------
 
-def create_card_json(web_info, json_file_name, user_message):
-    with open("./json/website_card.json", "r") as ffrom, open("./json/"+json_file_name, "w") as to:
-        to_insert = json.load(ffrom)
+# def create_card_json(web_info, json_file_name, user_message):
+#     with open("./json/website_card.json", "r") as ffrom, open("./json/"+json_file_name, "w") as to:
+#         to_insert = json.load(ffrom)
 
-        ### modify json info by user's input
-        to_insert["hero"]["action"]["uri"] = user_message
-        to_insert["body"]["action"]["uri"] = user_message
-        to_insert["body"]["contents"][0]["text"] = "new WEBSITE NAME"
-        to_insert["body"]["contents"][1]["text"] = user_message
-        to_insert["body"]["contents"][2]["contents"][1]["action"]["uri"] = web_info[0]['links'][0]['href']
-        to_insert["body"]["contents"][2]["contents"][1]["contents"][0]["text"] = web_info[0]['title']
-        to_insert["body"]["contents"][2]["contents"][1]["contents"][1]["text"] = web_info[0]['published']
-        to_insert["body"]["contents"][2]["contents"][2]["action"]["uri"] = web_info[1]['links'][0]['href']
-        to_insert["body"]["contents"][2]["contents"][2]["contents"][0]["text"] = web_info[1]['title']
-        to_insert["body"]["contents"][2]["contents"][2]["contents"][1]["text"] = web_info[1]['published']
+#         ### modify json info by user's input
+#         to_insert["hero"]["action"]["uri"] = user_message
+#         to_insert["body"]["action"]["uri"] = user_message
+#         to_insert["body"]["contents"][0]["text"] = "new WEBSITE NAME"
+#         to_insert["body"]["contents"][1]["text"] = user_message
+#         to_insert["body"]["contents"][2]["contents"][1]["action"]["uri"] = web_info[0]['links'][0]['href']
+#         to_insert["body"]["contents"][2]["contents"][1]["contents"][0]["text"] = web_info[0]['title']
+#         to_insert["body"]["contents"][2]["contents"][1]["contents"][1]["text"] = web_info[0]['published']
+#         to_insert["body"]["contents"][2]["contents"][2]["action"]["uri"] = web_info[1]['links'][0]['href']
+#         to_insert["body"]["contents"][2]["contents"][2]["contents"][0]["text"] = web_info[1]['title']
+#         to_insert["body"]["contents"][2]["contents"][2]["contents"][1]["text"] = web_info[1]['published']
 
 
-        json.dump( to_insert, to )
+#         json.dump( to_insert, to )
 
         
         
@@ -57,7 +60,7 @@ def text_reply_message(user_message):
     #     print( web_info[i]['title'] ) # title of the article
     #     print( web_info[i]['links'][0]['href'] ) # link of the article
     json_file_name = "newfile.json"
-    create_card_json(web_info, json_file_name, user_message)
+    tools.create_tracker_card_json(web_info, json_file_name, user_message)
 
     ### use web info to modify the card's info
     

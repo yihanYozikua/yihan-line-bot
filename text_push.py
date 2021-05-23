@@ -15,7 +15,9 @@ from linebot.exceptions import (
 from linebot.models import *
 
 #---------------- self define variables ----------------
-# from mykey import *
+import RSSfeed as RSSfeed
+import tools as tools
+
 from config import *
 #---------------- line settings ----------------
 # Channel Access Token

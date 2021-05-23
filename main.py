@@ -22,14 +22,13 @@ from io import StringIO
 import requests
 import random
 import json
-import math
-import time
-import datetime
 
 #---------------- custom module ----------------
 import text_push as text_push
 import text_reply as text_reply
 import RSSfeed as RSSfeed
+import tools as tools
+
 from config import *
 #---------------- line settings ----------------
 # Channel Access Token
