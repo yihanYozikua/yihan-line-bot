@@ -120,12 +120,23 @@
         "type": "button",
         "action": {
           "type": "message",
-          "label": "Click to see article",
+          "label": "按我看文章列表",
           "text": "WEBSITE NAME 文章列表"
         },
-        "color": "#0000003A",
+        "color": "#999999",
         "style": "primary",
         "gravity": "center"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "postback",
+          "label": "取消追蹤",
+          "data": "delete",
+          "displayText": "取消追蹤 {某網頁}"
+        },
+        "color": "#ffcccc",
+        "margin": "md"
       }
     ]
   }
