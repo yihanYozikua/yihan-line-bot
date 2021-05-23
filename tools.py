@@ -12,6 +12,8 @@ import requests
 import random
 import re
 
+from werkzeug.exceptions import RequestURITooLarge
+
 
 
 def create_tracker_card_json(web_info, json_file_name, user_message):
@@ -33,6 +35,13 @@ def create_tracker_card_json(web_info, json_file_name, user_message):
 
         json.dump( to_insert, to )
 
-def analyze_text( input_text ):
-  
-  return result_text
+def analyze_text( input_text, pattern ): # find if the input text is matched to the pattern
+  if re.fullmatch( pattern, input_text ):
+    print("matched!")
+    analysis = True
+    return analysis
+
+# if __name__ == "__main__":
+#   text = "開始使用 加入追蹤"
+#   result = analyze_text( text, ".*開始使用.*" )
+#   print( result )
