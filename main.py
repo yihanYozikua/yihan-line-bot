@@ -62,11 +62,13 @@ def callback():
 # handle messages
 @handler.add(MessageEvent)
 def handle_message(event):
-    print(event)
+    # print(event)
     event_json = json.loads(str(event))
 
     # PARAMETERS
-    userId = event_json["source"]["userId"] # get user id
+    # userId = event_json["source"]["userId"] # get user id
+    userId = event.source.user_id   # get user's id
+    line_bot_api.get_profile(userId) # get user's profile ## displayName | language | pictureUrl | userId
     tutorial_key_word = ".*開始試用.*"
 
     if event.message.type == "sticker":
@@ -90,8 +92,12 @@ def handle_message(event):
             tutorial_or_not = tools.analyze_text( event.message.text, str(tutorial_key_word) ) # analyze if the input text = tutorial
             if tutorial_or_not: # input text = tutorial
                 # start tutorial
-                output_message = TextSendMessage(text="試用start！")
-                line_bot_api.reply_message(event.reply_token, output_message)
+                # output_message = TextSendMessage(text="請按下以下按鈕")
+                reply_message_arr = []
+                reply_message_arr.append( TextSendMessage(text="若您使用的是電腦，請您移至手機版操作唷！") )
+                reply_message_arr.append( TextSendMessage(text="請按下以下按鈕") )
+                line_bot_api.reply_message(event.reply_token, reply_message_arr)
+                return 
             else:
                 output_message = TextSendMessage(text="這個不是正確的URL唷，請再檢查一下這個連結是否真的存在～～")
         
