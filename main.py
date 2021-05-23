@@ -6,6 +6,7 @@
 # Copyright © 2021 YIHAN HSIAO. All rights reserved.
 #====================================================
 
+from typing import Text
 from flask import Flask, request, abort
 
 from linebot import (
@@ -95,7 +96,13 @@ def handle_message(event):
                 # output_message = TextSendMessage(text="請按下以下按鈕")
                 reply_message_arr = []
                 reply_message_arr.append( TextSendMessage(text="若您使用的是電腦，請您移至手機版操作唷！") )
-                reply_message_arr.append( TextSendMessage(text="請按下以下按鈕") )
+                reply_message_arr.append( TextSendMessage(text='請按下以下按鈕以加入範例網誌URL',
+                                                          quick_reply=QuickReply(items=[
+                                                                        QuickReplyButton(
+                                                                            action=MessageAction(
+                                                                                label="按我加入網誌URL", 
+                                                                                text="https://chloe981219.medium.com/"))
+                                        ])))
                 line_bot_api.reply_message(event.reply_token, reply_message_arr)
                 return 
             else:
