@@ -51,9 +51,22 @@ def text_reply_message(user_message, userId):
     try:
         ### 加入追蹤 Add_new_tracker
         if requests.get( user_message ).status_code == 200:
-            # add new tracker
-            return_message_array = bot_functions.add_new_tracker( user_message, userId )
+            # detect if the URL has been already added to the tracker list
+            ### detect from user's db ###
+            with open("./json/userDB/"+userId+".json", "r") as data:
+                userData = json.load(data)
+            if len(userData["tracker_list"]) == 0:
+                return_message_array = bot_functions.add_new_tracker( user_message, userId )
+            else:
+                for element in userData["tracker_list"]:
+                    if element["web_url"] == user_message:
+                        # remind the user that he/she has already track the URL
+                        return_message_array.append( TextSendMessage(text="這個網誌您已有追蹤囉！") )
+                    else:
+                        # add new tracker
+                        return_message_array = bot_functions.add_new_tracker( user_message, userId )
 
+            
             # if the user is in "tutorial status", then also reply the guiding text
             if (user_status == "tutorial"):
                 return_message_array.append( TextSendMessage(text="已成功將網誌加入追蹤！") )
