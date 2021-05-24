@@ -54,13 +54,12 @@ def add_new_tracker( web_url ): # return a "FlexMssage"
 
 # trigger by text "{Website name}文章列表"
 def show_articles_card( web_name ):
-  
-
   return_array = []
-  
 
   ### Show articles' cards ###
-
+  FlexMessage = tools.create_articles_card()
+  return_array.append( FlexSendMessage( 'articles', FlexMessage ) )
+  
   return return_array
 
 # trigger by text "查看追蹤列表"
