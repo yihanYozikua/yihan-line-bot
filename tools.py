@@ -105,6 +105,18 @@ def create_articles_card(userId):
   ### return json object
   return output_json
 
+# Add one bubble into carousel
+def generate_carousel_cards(userId, carousel_container, bubble):
+  # carousel_container = {
+  #   "type": "carousel",
+  #   "contents":[
+  #   ]
+  # }
+  ### data[where_to_insert].append( bubble )
+  carousel_container["contents"].append(bubble)
+  return carousel_container
+
+
 def analyze_text( input_text, pattern ): # find if the input text is matched to the pattern
   if re.fullmatch( pattern, input_text ):
     print("matched!")

@@ -18,7 +18,7 @@ from linebot.models import *
 import json
 import requests
 import re
-import os
+import os, sys
 
 #---------------- custom module ----------------
 import text_push as text_push
@@ -45,6 +45,7 @@ def text_reply_message(user_message, userId):
     ## image to show = crawling: <og:image> || <icon>
     #-----------------------------------------------------------
     return_message_array = []
+    repeat_tracker = False
 
     # get user's data(DB)
     with open("./json/userDB/"+userId+".json", "r") as data:
@@ -53,10 +54,10 @@ def text_reply_message(user_message, userId):
     try:
         ### 加入追蹤 Add_new_tracker
         if requests.get( user_message ).status_code == 200:
-            # detect if the URL has been already added to the tracker list
             if len(userData["tracker_list"]) == 0:
                 return_message_array = bot_functions.add_new_tracker( user_message, userId )
             else:
+                # detect if the URL has been already added to the tracker list 
                 for element in userData["tracker_list"]:
                     if element["web_url"] == user_message:
                         # remind the user that he/she has already track the URL
@@ -64,11 +65,27 @@ def text_reply_message(user_message, userId):
 
                         # show this tracker card
                             ### write code here ###
-                        # show tracker list
-                            ### write code here ###                        
-                    else:
-                        # add new tracker
-                        return_message_array = bot_functions.add_new_tracker( user_message, userId )
+                        # show tracker list (carousel)
+                        carousel_container = {
+                            "type": "carousel",
+                            "contents":[
+                            ]
+                        }
+                        for file in (os.listdir("./json/userDB/"+userId)):
+                            print(file)
+                            with open("./json/userDB/"+userId+"/"+file, "r") as bubble:
+                                bubble_data = json.load(bubble)
+                                print(carousel_container)
+                                carousel_container = tools.generate_carousel_cards(userId, carousel_container, bubble_data)
+                        ### show tracker_list ###
+                        FlexMessage = carousel_container
+                        return_message_array.append( FlexSendMessage( 'trackers', FlexMessage ) )
+                        repeat_tracker = True
+                        break
+
+                # if not find, then add new tracker
+                if repeat_tracker == False:
+                    return_message_array = bot_functions.add_new_tracker( user_message, userId )
 
             # if the user is in "tutorial status", then also reply the guiding text
             if (userData["status"] == "tutorial"):
@@ -83,7 +100,7 @@ def text_reply_message(user_message, userId):
             ### split user_message ###
 
             # call function to get articles' cards
-            return_message_array = bot_functions.show_articles_card( user_message )
+            return_message_array = bot_functions.show_articles_card( user_message, userId )
 
             # if the user is in "tutorial status", then also reply the guiding text
             if (userData["status"] == "tutorial"):

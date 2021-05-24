@@ -90,11 +90,11 @@ def add_new_tracker( web_url, userId ): # return a "FlexMssage"
   return return_array
 
 # trigger by text "{Website name}文章列表"
-def show_articles_card( web_name ):
+def show_articles_card( web_name, userId ):
   return_array = []
 
   ### Show articles' cards ###
-  FlexMessage = tools.create_articles_card()
+  FlexMessage = tools.create_articles_card(userId)
   return_array.append( FlexSendMessage( 'articles', FlexMessage ) )
   
   return return_array
