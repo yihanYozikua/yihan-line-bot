@@ -48,13 +48,16 @@ def add_new_tracker( web_url ): # return a "FlexMssage"
   json_file_name = tools.create_tracker_card_json(web_info, web_url) # create new tracker card
 
   return_array = []
-  FlexMessage = json.load( open("./json/"+json_file_name, 'r', encoding = 'utf-8') )
+  FlexMessage = json.load( open("./json/website_list_cards/"+json_file_name, 'r', encoding = 'utf-8') )
   return_array.append( FlexSendMessage( 'web', FlexMessage ) )
   return return_array
 
 # trigger by text "{Website name}文章列表"
 def show_articles_card( web_name ):
+  
+
   return_array = []
+  
 
   ### Show articles' cards ###
 

@@ -1,0 +1,195 @@
+{
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "size": "mega",
+      "direction": "ltr",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "md",
+        "action": {
+          "type": "uri",
+          "label": "go to the article",
+          "uri": "https://linecorp.com"
+        },
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "website name",
+                "color": "#ffffff",
+                "align": "center"
+              }
+            ],
+            "backgroundColor": "#ff5c33",
+            "cornerRadius": "20px",
+            "borderWidth": "bold",
+            "action": {
+              "type": "uri",
+              "label": "go to the website",
+              "uri": "http://linecorp.com/"
+            }
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Article1 title",
+                "weight": "bold",
+                "size": "xl",
+                "align": "center",
+                "contents": [],
+                "margin": "none",
+                "gravity": "center"
+              },
+              {
+                "type": "text",
+                "text": "publish date",
+                "size": "xs",
+                "color": "#AAAAAA",
+                "align": "center",
+                "gravity": "center",
+                "margin": "none",
+                "wrap": true,
+                "contents": []
+              }
+            ],
+            "alignItems": "center",
+            "justifyContent": "center",
+            "height": "100px",
+            "spacing": "none"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "align": "start",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "可能有點突然，但在經歷了留學和一小段時間的就職活動之後，我加入了一間位於神戶的網頁設計公司。公司不大，有著溫暖的上司、年齡相仿的同事，以及他們對工作如對生活的態度。未來將在這裡，以網頁設計師的身份繼續努力了。",
+                    "decoration": "none"
+                  }
+                ],
+                "wrap": true,
+                "size": "sm",
+                "color": "#999999",
+                "gravity": "center"
+              }
+            ],
+            "margin": "none"
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": []
+      }
+    },
+    {
+      "type": "bubble",
+      "size": "mega",
+      "direction": "ltr",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "md",
+        "action": {
+          "type": "uri",
+          "label": "go to the article",
+          "uri": "https://linecorp.com"
+        },
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "website name",
+                "color": "#ffffff",
+                "align": "center"
+              }
+            ],
+            "backgroundColor": "#ff5c33",
+            "cornerRadius": "20px",
+            "borderWidth": "bold",
+            "action": {
+              "type": "uri",
+              "label": "go to the website",
+              "uri": "http://linecorp.com/"
+            }
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Article1 title",
+                "weight": "bold",
+                "size": "xl",
+                "align": "center",
+                "contents": [],
+                "margin": "none",
+                "gravity": "center"
+              },
+              {
+                "type": "text",
+                "text": "publish date",
+                "size": "xs",
+                "color": "#AAAAAA",
+                "align": "center",
+                "gravity": "center",
+                "margin": "none",
+                "wrap": true,
+                "contents": []
+              }
+            ],
+            "alignItems": "center",
+            "justifyContent": "center",
+            "height": "100px",
+            "spacing": "none"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "align": "start",
+                "contents": [
+                  {
+                    "type": "span",
+                    "text": "可能有點突然，但在經歷了留學和一小段時間的就職活動之後，我加入了一間位於神戶的網頁設計公司。公司不大，有著溫暖的上司、年齡相仿的同事，以及他們對工作如對生活的態度。未來將在這裡，以網頁設計師的身份繼續努力了。",
+                    "decoration": "none"
+                  }
+                ],
+                "wrap": true,
+                "size": "sm",
+                "color": "#999999",
+                "gravity": "center"
+              }
+            ],
+            "margin": "none"
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": []
+      }
+    }
+  ]
+}

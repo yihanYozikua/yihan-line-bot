@@ -41,7 +41,7 @@ def create_tracker_card_json(web_info, web_url):
 
     json_file_name = web_name + ".json"
 
-    with open("./json/website_card.json", "r") as ffrom, open("./json/website_list_cards/"+json_file_name, "w") as to:
+    with open("./json/template_card/website_card_template.json", "r") as ffrom, open("./json/website_list_cards/"+json_file_name, "w") as to:
         to_insert = json.load(ffrom)
 
         web_image = crawl.find( "meta", property="og:image" ) # web_image["content"]
@@ -71,6 +71,11 @@ def create_tracker_card_json(web_info, web_url):
         json.dump( to_insert, to )
     
     return json_file_name
+
+def create_articles_card():
+  # with open( "./json/" ):
+
+  return
 
 def analyze_text( input_text, pattern ): # find if the input text is matched to the pattern
   if re.fullmatch( pattern, input_text ):
