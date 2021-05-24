@@ -31,7 +31,7 @@ from config import *
 
 #---------------- global variables ----------------
 # key words for detecting what action is it
-action_key_word = [".*文章列表.*", ".*查看追蹤列表.*", ".*取消追蹤.*"] 
+action_key_word = [".*文章列表.*", ".*查看追蹤列表.*", ".*取消追蹤.*"]
 #---------------------------------------------------
 
 
@@ -102,9 +102,13 @@ def text_reply_message(user_message, userId):
 
         ### 查看追蹤列表 Show_tracker_list =================================
         elif( tools.analyze_text(user_message, action_key_word[1]) ):
-            ### show tracker_list (carousel)
-            FlexMessage = bot_functions.show_tracker_list( userId )
-            return_message_array.append( FlexSendMessage( 'trackers', FlexMessage ) )
+            if len(userData["tracker_list"]) == 0:
+                return_message_array.append( TextSendMessage(text="還沒有追蹤任何文章唷，現在就開始追蹤吧～") )
+                return_message_array.append( TextSendMessage(text="請以鍵盤輸入想追蹤的網誌URL：") )
+            else:
+                ### show tracker_list (carousel)
+                FlexMessage = bot_functions.show_tracker_list( userId )
+                return_message_array.append( FlexSendMessage( 'trackers', FlexMessage ) )
             
             # if the user is in "tutorial status", then also reply the guiding text
             if (userData["status"] == "tutorial"):
@@ -122,6 +126,7 @@ def text_reply_message(user_message, userId):
 
             # if the user is in "tutorial status", then also reply the guiding text
             if (userData["status"] == "tutorial"):
+                user_db_manipulate.modify_db(userId, "status", "general") # Finish tutorial
                 return_message_array.append( TextSendMessage(text="已成功刪除一個追蹤項目！") )
                 return_message_array.append( TextSendMessage(text="恭喜呀～您已完成試用！現在，試著加入自己想追蹤的網誌吧～") )
 
