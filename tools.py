@@ -81,26 +81,43 @@ def create_tracker_card_json(web_info, web_url, userId):
   
   return json_file_name
 
-def create_articles_card(userId):
+def create_articles_card(web_name, userId):
   ### get user's data(DB)
-  with open("./json/userDB/"+userId+".json", "r") as data:
+  with open("./json/userDB/"+userId+".json", "r") as data, open( "./json/template_card/carousel_card_template.json", "r" ) as ffrom:
     userData = json.load(data)
     # find the latest data
     index = len(userData["tracker_list"]) - 1
     user_tracker_latest = userData["tracker_list"][index]
-
-
-
-  with open( "./json/template_card/carousel_card_template.json", "r" ) as ffrom:
     output_json = json.load(ffrom)
+    
+  ### find the location of the web inside user's data
+  origin_file = "./json/userDB/"+userId+".json"
+  
+  with open(origin_file) as data_file:
+    data = json.load(data_file)
 
-    ### modify the info showing on the card of the 1st article
-    output_json["contents"][0]["body"]["action"]["uri"] = "https://note.com/monotaro_note" # article url
-    output_json["contents"][0]["body"]["contents"][0]["action"]["uri"] = "https://chloe981219.medium.com/" # website url
-    output_json["contents"][0]["body"]["contents"][0]["contents"][0]["text"] = "name" # website name
-    output_json["contents"][0]["body"]["contents"][1]["contents"][0]["text"] = "title" # Article title
-    output_json["contents"][0]["body"]["contents"][1]["contents"][1]["text"] = "date" # publish date
-    output_json["contents"][0]["body"]["contents"][2]["contents"][0]["contents"][0]["text"] = "summary"
+  
+  
+  article_card_number = 0
+  for i in range(len( data["tracker_list"] )):
+    if data["tracker_list"][i]["web_name"] == web_name:
+      for element in data["tracker_list"][i]["articles"]:
+        ## render this element
+        article_url = element["article_url"]
+        web_url = data["tracker_list"][i]["web_url"]
+        article_title = element["title"]
+        article_publish_date = element["publish_date"]
+        # article_summary = element["summary"]
+
+        ### modify the info showing on the card of the 1st article
+        output_json["contents"][article_card_number]["body"]["action"]["uri"] = article_url # article url
+        output_json["contents"][article_card_number]["body"]["contents"][0]["action"]["uri"] = web_url # website url
+        output_json["contents"][article_card_number]["body"]["contents"][0]["contents"][0]["text"] = web_name # website name
+        output_json["contents"][article_card_number]["body"]["contents"][1]["contents"][0]["text"] = article_title # Article title
+        output_json["contents"][article_card_number]["body"]["contents"][1]["contents"][1]["text"] = article_publish_date # publish date
+        # output_json["contents"][article_card_number]["body"]["contents"][2]["contents"][0]["contents"][0]["text"] = article_summary
+
+        article_card_number+=1
 
     
   ### return json object

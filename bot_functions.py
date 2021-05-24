@@ -46,7 +46,12 @@ app = Flask(__name__)
 
 # trigger by existing "URL" 
 def add_new_tracker( web_url, userId ): # return a "FlexMssage" 
+  return_array = []
+
   web_info = RSSfeed.findRSS( web_url ) # get website info
+  if web_info == {}:
+    return_array.append( TextSendMessage(text="Oops抱歉，這個網頁沒辦法追蹤耶😰") )
+    return return_array
   
   ###================= insert new data to user's db =================
   crawl = tools.crwaling_web(web_url)
@@ -67,14 +72,14 @@ def add_new_tracker( web_url, userId ): # return a "FlexMssage"
       "publish_date": web_info[0]['published'],
       "web_host_url": web_url,
       "article_url": web_info[0]['links'][0]['href'],
-      "summary": "texttexttexttexttexttexttexttexttexttexttexttext"
+      # "summary": web_info[0]['summary']
       },
       {
       "title": web_info[1]['title'],
       "publish_date": web_info[1]['published'],
       "web_host_url": web_url,
       "article_url": web_info[1]['links'][0]['href'],
-      "summary": "texttexttexttexttexttexttexttexttexttexttexttext"
+      # "summary": "texttexttexttexttexttexttexttexttexttexttexttext"
       }
     ]
   }
@@ -84,7 +89,7 @@ def add_new_tracker( web_url, userId ): # return a "FlexMssage"
   ###================= create new tracker card ==========================
   json_file_name = tools.create_tracker_card_json(web_info, web_url, userId) # create new tracker card
 
-  return_array = []
+  
   FlexMessage = json.load( open("./json/userDB/"+userId+"/"+json_file_name, 'r', encoding = 'utf-8') )
   return_array.append( FlexSendMessage( 'web', FlexMessage ) )
   return return_array
@@ -93,8 +98,10 @@ def add_new_tracker( web_url, userId ): # return a "FlexMssage"
 def show_articles_card( web_name, userId ):
   return_array = []
 
+
+
   ### Show articles' cards ###
-  FlexMessage = tools.create_articles_card(userId)
+  FlexMessage = tools.create_articles_card(web_name, userId)
   return_array.append( FlexSendMessage( 'articles', FlexMessage ) )
   
   return return_array

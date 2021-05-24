@@ -18,7 +18,10 @@ def findRSS( site_url ):
   my_params = {'url':site_url}
   r = requests.get('https://feedsearch.dev/api/v1/search', params=my_params)
   j = json.loads(r.text)
-  RSS_url = j[0]["self_url"]  
+  if j == {}:
+    return j
+
+  RSS_url = j[0]["self_url"] 
 
   ### Find keys and values
   NewsFeed = feedparser.parse(RSS_url)
