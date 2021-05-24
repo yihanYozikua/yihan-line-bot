@@ -82,19 +82,20 @@ def delete_db( userId, key ):
   with open(origin_file, 'w') as data_file:
     data = json.dump(data, data_file)
 
-  # with open(origin_file, "r") as origin:
-  #   origin_modify = json.load(origin)
-  
-  # ## delete element
-  # for element in origin_modify:
-  #   element.pop(key, None)
-  
-  # with open(origin_file, "w") as new:
-  #   json.dump(origin_modify, new)
 
+# def addElement_db( userId, where_to_insert, key, value ):
+def addElement_db( userId, where_to_insert, dictObj ):
+  origin_file = "./json/userDB/"+userId+".json"
+  
+  with open(origin_file) as data_file:
+    data = json.load(data_file)
 
-def addElement_db():
-  return
+  insert_index = len( data[where_to_insert] )
+  data[where_to_insert].append( dictObj )
+  # data[where_to_insert][insert_index][key] = value
+
+  with open(origin_file, 'w') as data_file:
+    data = json.dump(data, data_file)
 
 
 # find the value of specific key

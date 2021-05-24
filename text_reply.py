@@ -38,7 +38,7 @@ action_key_word = [".*文章列表.*", ".*查看追蹤列表.*", ".*取消追蹤
 #---------------------------------------------------
 
 
-def text_reply_message(user_message):
+def text_reply_message(user_message, userId):
     #---------------------- Info recording ---------------------
     ## website name = crawling: <title>
     ## site url = user_message
@@ -52,7 +52,7 @@ def text_reply_message(user_message):
         ### 加入追蹤 Add_new_tracker
         if requests.get( user_message ).status_code == 200:
             # add new tracker
-            return_message_array = bot_functions.add_new_tracker( user_message )
+            return_message_array = bot_functions.add_new_tracker( user_message, userId )
 
             # if the user is in "tutorial status", then also reply the guiding text
             if (user_status == "tutorial"):
@@ -65,8 +65,6 @@ def text_reply_message(user_message):
         if( tools.analyze_text(user_message, action_key_word[0]) ):
             # split the "user_message" to get which website that user want to get
             ### split user_message ###
-        
-            user_db_manipulate.delete_db( "U1f3104a8e5bbe8ccf1c08e1412285500 copy", "tracker_list")
 
             # call function to get articles' cards
             return_message_array = bot_functions.show_articles_card( user_message )

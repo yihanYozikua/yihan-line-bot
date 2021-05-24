@@ -44,10 +44,43 @@ handler = WebhookHandler(CHANNEL_SECRET)
 
 app = Flask(__name__)
 
-# trigger by existing "URL"
-def add_new_tracker( web_url ): # return a "FlexMssage" 
+# trigger by existing "URL" 
+def add_new_tracker( web_url, userId ): # return a "FlexMssage" 
   web_info = RSSfeed.findRSS( web_url ) # get website info
-  # json_file_name = "new.json" # new json file inorder to store new tracker info
+  
+  ### insert new data to user's db
+  # crawl = tools.crwaling_web(web_url)
+  # web_name = crawl.title.get_text()
+  # web_image = crawl.find( "meta", property="og:image" ) # web_image["content"]
+  # if web_image is None:
+  #   web_image = crawl.find_all( "link", rel="icon" )[-1]["href"]
+  # else:
+  #   web_image = None
+
+  # tracker_to_insert = {
+  #   "web_name": web_name,
+  #   "web_url": web_url,
+  #   "img_show": web_image,
+  #   "articles": [
+  #     {
+  #     "title": web_info[0]['title'],
+  #     "publish_date": web_info[0]['published'],
+  #     "web_host_url": web_url,
+  #     "article_url": web_info[0]['links'][0]['href'],
+  #     "summary": "texttexttexttexttexttexttexttexttexttexttexttext"
+  #     },
+  #     {
+  #     "title": web_info[1]['title'],
+  #     "publish_date": web_info[1]['published'],
+  #     "web_host_url": web_url,
+  #     "article_url": web_info[1]['links'][0]['href'],
+  #     "summary": "texttexttexttexttexttexttexttexttexttexttexttext"
+  #     }
+  #   ]
+  # }
+  # user_db_manipulate.addElement_db( userId, "tracker_list", tracker_to_insert)
+
+  ### create new tracker card
   json_file_name = tools.create_tracker_card_json(web_info, web_url) # create new tracker card
 
   return_array = []

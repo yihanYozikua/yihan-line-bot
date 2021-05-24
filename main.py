@@ -94,7 +94,7 @@ def handle_message(event):
             if req.status_code == 200:
                 user_message = event.message.text
                 # reply_message_arr.append( text_reply.text_reply_message(user_message) )
-                reply_message_arr = text_reply.text_reply_message(user_message)
+                reply_message_arr = text_reply.text_reply_message(user_message, userId)
             else:
                 reply_message_arr.append( TextSendMessage(text="Oops找不到網站耶😨 請再檢查一下這個連結是否真的存在～～") )
                 
@@ -113,7 +113,7 @@ def handle_message(event):
                                         ])))
             else:
                 # reply_message_arr.append( TextSendMessage(text="這個不是正確的URL唷，請再檢查一下這個連結是否真的存在～～") )
-                reply_message_arr = text_reply.text_reply_message( event.message.text )
+                reply_message_arr = text_reply.text_reply_message( event.message.text, userId )
 
         line_bot_api.reply_message(event.reply_token, reply_message_arr)
         

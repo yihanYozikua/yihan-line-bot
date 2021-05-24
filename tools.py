@@ -57,11 +57,6 @@ def create_tracker_card_json(web_info, web_url):
     else:
       to_insert["hero"]["url"] = web_image["content"]
 
-    ### modify json info by user's input
-    # if web_image is None:
-    #   return #=== do nothing ===
-    # elif web_image:
-    #   to_insert["hero"]["url"] = web_image["content"]
     to_insert["hero"]["action"]["uri"] = web_url
     to_insert["body"]["action"]["uri"] = web_url
     to_insert["body"]["contents"][0]["text"] = web_name
