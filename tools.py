@@ -74,7 +74,8 @@ def create_tracker_card_json(web_info, web_url, userId):
     to_insert["body"]["contents"][2]["contents"][2]["action"]["uri"] = user_tracker_latest["articles"][1]["article_url"]
     to_insert["body"]["contents"][2]["contents"][2]["contents"][0]["text"] = user_tracker_latest["articles"][1]["title"]
     to_insert["body"]["contents"][2]["contents"][2]["contents"][1]["text"] = user_tracker_latest["articles"][1]["publish_date"]
-
+    to_insert["footer"]["contents"][0]["action"]["text"] = "《"+user_tracker_latest["web_name"]+"》"+"文章列表"
+    to_insert["footer"]["contents"][1]["action"]["text"] = "取消追蹤《"+user_tracker_latest["web_name"]+"》"
 
     json.dump( to_insert, to )
   

@@ -63,20 +63,8 @@ def text_reply_message(user_message, userId):
                         # remind the user that he/she has already track the URL
                         return_message_array.append( TextSendMessage(text="這個網誌您已有追蹤囉！") )
 
-                        # show tracker list (carousel)
-                        carousel_container = {
-                            "type": "carousel",
-                            "contents":[
-                            ]
-                        }
-                        for file in (os.listdir("./json/userDB/"+userId)):
-                            print(file)
-                            with open("./json/userDB/"+userId+"/"+file, "r") as bubble:
-                                bubble_data = json.load(bubble)
-                                print(carousel_container)
-                                carousel_container = tools.generate_carousel_cards(userId, carousel_container, bubble_data)
-                        ### show tracker_list ###
-                        FlexMessage = carousel_container
+                        ### show tracker_list (carousel)
+                        FlexMessage = bot_functions.show_tracker_list( userId )
                         return_message_array.append( FlexSendMessage( 'trackers', FlexMessage ) )
                         repeat_tracker = True
                         break
@@ -114,6 +102,9 @@ def text_reply_message(user_message, userId):
 
         ### 查看追蹤列表 Show_tracker_list =================================
         elif( tools.analyze_text(user_message, action_key_word[1]) ):
+            ### show tracker_list (carousel)
+            FlexMessage = bot_functions.show_tracker_list( userId )
+            return_message_array.append( FlexSendMessage( 'trackers', FlexMessage ) )
             
             # if the user is in "tutorial status", then also reply the guiding text
             if (userData["status"] == "tutorial"):

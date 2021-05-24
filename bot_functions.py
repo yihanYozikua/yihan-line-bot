@@ -100,8 +100,18 @@ def show_articles_card( web_name, userId ):
   return return_array
 
 # trigger by text "查看追蹤列表"
-def show_tracker_list():
-  return
+def show_tracker_list( userId ):
+  # show tracker list (carousel)
+  carousel_container = {
+      "type": "carousel",
+      "contents":[
+      ]
+  }
+  for file in (os.listdir("./json/userDB/"+userId)):
+      with open("./json/userDB/"+userId+"/"+file, "r") as bubble:
+          bubble_data = json.load(bubble)
+          carousel_container = tools.generate_carousel_cards(userId, carousel_container, bubble_data)
+  return carousel_container
 
 # trigger by text "取消追蹤{Website name}"
 def delete_tracker():
