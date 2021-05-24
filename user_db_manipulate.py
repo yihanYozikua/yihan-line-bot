@@ -48,8 +48,8 @@ handler = WebhookHandler(CHANNEL_SECRET)
 
 app = Flask(__name__)
 
-
-def create_db( userId ): # INIT create a json file to record user's data
+# INIT create a json file to record user's data
+def create_db( userId ): 
   with open("./json/template_card/user_DB_template.json", "r") as template_json, open("./json/userDB/"+userId+".json", "w") as user_json:
     temp_json = json.load(template_json)
     temp_json["userId"] = userId
@@ -57,11 +57,42 @@ def create_db( userId ): # INIT create a json file to record user's data
 
     json.dump( temp_json, user_json )
 
-def modify_db():
+
+# modify specific key's value
+def modify_db( userId, key, new_value ):
+  origin_file = "./json/userDB/"+userId+".json"
+  new_file = "./json/userDB/"+userId+"_new.json"
+  with open(origin_file, "r") as origin, open(new_file, "w") as new:
+    origin_modify = json.load(origin)
+    origin_modify[key] = new_value
+    json.dump( origin_modify, new )
+
+  ## delete origin file
+  try:
+    os.remove( origin_file )
+  except OSError as e:
+    print(e)
+
+  ## copy new to origin
+  with open(new_file, "r") as origin, open(origin_file, "w") as new:
+    origin_modify = json.load(origin)
+    json.dump( origin_modify, new )
+
+  ## delete new
+  try:
+    os.remove( new_file )
+  except OSError as e:
+    print(e)
+
+
+# delete specific key and value
+def delete_db( userId, key ):
+
   return
 
-def delete_db():
-  return
 
-def query_db():
-  return
+# find the value of specific key
+def query_db( userId, key ):
+  return value
+
+# user_db_manipulate.modify_db( "U1f3104a8e5bbe8ccf1c08e1412285500", "userName", "垂垂" )
