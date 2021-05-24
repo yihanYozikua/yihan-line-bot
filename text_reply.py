@@ -28,11 +28,8 @@ import bot_functions as bot_functions
 import user_db_manipulate as user_db_manipulate
 
 from config import *
+
 #---------------- global variables ----------------
-
-# set user's usage status, default = tutorial, other = common_using
-user_status = "tutorial" 
-
 # key words for detecting what action is it
 action_key_word = [".*文章列表.*", ".*查看追蹤列表.*", ".*取消追蹤.*"] 
 #---------------------------------------------------
@@ -48,13 +45,15 @@ def text_reply_message(user_message, userId):
     ## image to show = crawling: <og:image> || <icon>
     #-----------------------------------------------------------
     return_message_array = []
+
+    # get user's data(DB)
+    with open("./json/userDB/"+userId+".json", "r") as data:
+        userData = json.load(data)
+
     try:
         ### 加入追蹤 Add_new_tracker
         if requests.get( user_message ).status_code == 200:
             # detect if the URL has been already added to the tracker list
-            ### detect from user's db ###
-            with open("./json/userDB/"+userId+".json", "r") as data:
-                userData = json.load(data)
             if len(userData["tracker_list"]) == 0:
                 return_message_array = bot_functions.add_new_tracker( user_message, userId )
             else:
@@ -62,13 +61,17 @@ def text_reply_message(user_message, userId):
                     if element["web_url"] == user_message:
                         # remind the user that he/she has already track the URL
                         return_message_array.append( TextSendMessage(text="這個網誌您已有追蹤囉！") )
+
+                        # show this tracker card
+                            ### write code here ###
+                        # show tracker list
+                            ### write code here ###                        
                     else:
                         # add new tracker
                         return_message_array = bot_functions.add_new_tracker( user_message, userId )
 
-            
             # if the user is in "tutorial status", then also reply the guiding text
-            if (user_status == "tutorial"):
+            if (userData["status"] == "tutorial"):
                 return_message_array.append( TextSendMessage(text="已成功將網誌加入追蹤！") )
                 return_message_array.append( TextSendMessage(text="請按上上則訊息中的「按我看文章列表」以查看最新文章") )
 
@@ -83,7 +86,7 @@ def text_reply_message(user_message, userId):
             return_message_array = bot_functions.show_articles_card( user_message )
 
             # if the user is in "tutorial status", then also reply the guiding text
-            if (user_status == "tutorial"):
+            if (userData["status"] == "tutorial"):
                 return_message_array.append( TextSendMessage(text="成功看到這個網誌的最新文章列表囉！") )
                 return_message_array.append( TextSendMessage(text="請按以下按鈕以查看追蹤清單",
                                                             quick_reply=QuickReply(items=[
@@ -98,7 +101,7 @@ def text_reply_message(user_message, userId):
         elif( tools.analyze_text(user_message, action_key_word[1]) ):
             
             # if the user is in "tutorial status", then also reply the guiding text
-            if (user_status == "tutorial"):
+            if (userData["status"] == "tutorial"):
                 return_message_array.append( TextSendMessage(text="成功看到列表了！以上這些就是您目前已追蹤的網誌唷～") )
                 return_message_array.append( TextSendMessage(text="請按上則訊息中的「取消追蹤」以取消追蹤此網誌") )
         
@@ -108,7 +111,7 @@ def text_reply_message(user_message, userId):
             
 
             # if the user is in "tutorial status", then also reply the guiding text
-            if (user_status == "tutorial"):
+            if (userData["status"] == "tutorial"):
                 return_message_array.append( TextSendMessage(text="已成功刪除一個追蹤項目！") )
                 return_message_array.append( TextSendMessage(text="恭喜呀～您已完成試用！現在，試著加入自己想追蹤的網誌吧～") )
 
@@ -141,7 +144,7 @@ def text_reply_message(user_message, userId):
     #     return_message_array = bot_functions.add_new_tracker( user_message )
 
     #     # if the user is in "tutorial status", then also reply the guiding text
-    #     if (user_status == "tutorial"):
+    #     if (userData["status"] == "tutorial"):
     #         return_message_array.append( TextSendMessage(text="已成功將網誌加入追蹤！請按上則訊息中的「按我看文章列表」以查看最新文章 ") )
     
     
