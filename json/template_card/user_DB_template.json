@@ -3,19 +3,6 @@
   "userName":"",
   "status":"tutorial",
   "tracker_list":[
-    {
-      "web_name": "",
-      "web_url": "",
-      "img_show": "",
-      "articles":[
-        {
-          "title": "ARTICLE TITLE",
-          "publish_date":"DD/MM/YY",
-          "web_host_url":"HTTPS://URL.COM",
-          "article_url":"HTTPS://URL.COM/ARTICLE",
-          "summary":"texttexttexttexttexttexttexttexttexttexttexttext"
-        }
-      ]
-    }
+    
   ]
 }
