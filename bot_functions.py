@@ -114,9 +114,27 @@ def show_tracker_list( userId ):
   return carousel_container
 
 # trigger by text "取消追蹤{Website name}"
-def delete_tracker():
+def delete_tracker( userId, web_name ):
   ### Check if the user really want to delete the tracker, or he/she just makes a mistake
     ### if confirm "delete"
 
     ### else
+  
+  ### Remove element inside the user's data(DB) ===========
+  origin_file = "./json/userDB/"+userId+".json"
+  
+  with open(origin_file) as data_file:
+    data = json.load(data_file)
+
+  for element in data["tracker_list"]:
+    print(element)
+    if element["web_name"] == web_name:
+      data["tracker_list"].remove(element)
+
+  with open(origin_file, 'w') as data_file:
+    data = json.dump(data, data_file)
+
+  ### Delete card(.json) inside ".json/userDB/<userId>/" ===========
+  os.remove("./json/userDB/"+userId+"/"+web_name+".json")
+
   return

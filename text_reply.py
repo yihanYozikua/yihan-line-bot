@@ -114,7 +114,11 @@ def text_reply_message(user_message, userId):
 
         ### 取消追蹤 Delete_tracker =================================
         elif( tools.analyze_text(user_message, action_key_word[2]) ):
-            
+            ### split "web_name" string from user_message
+            str_array = user_message.split('#')
+            web_name = str_array[1]
+
+            bot_functions.delete_tracker( userId, web_name )
 
             # if the user is in "tutorial status", then also reply the guiding text
             if (userData["status"] == "tutorial"):
