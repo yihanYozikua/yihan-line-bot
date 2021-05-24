@@ -39,18 +39,18 @@ action_key_word = [".*文章列表.*", ".*查看追蹤列表.*", ".*取消追蹤
 
 def text_reply_message(user_message):
     #---------------------- Info recording ---------------------
-    ## website name = ??
+    ## website name = crawling: <title>
     ## site url = user_message
     ## article titles = web_info[nth article]['title']
     ## published dates = web_info[nth article]['published']
     ## articles' urls = web_info[nth article]['links'][0]['href']
-    ## image to show = ??
+    ## image to show = crawling: <og:image> || <icon>
     #-----------------------------------------------------------
     return_message_array = []
     try:
         ### 加入追蹤 Add_new_tracker
         if requests.get( user_message ).status_code == 200:
-            # user send new URL
+            # add new tracker
             return_message_array = bot_functions.add_new_tracker( user_message )
 
             # if the user is in "tutorial status", then also reply the guiding text

@@ -1,3 +1,12 @@
+#====================================================
+# RSSfeed.py
+## find RSS url
+## parse the RSS url
+# YIHAN LINE BOT
+
+# Created by YIHAN HISAO on May 21, 2021.
+# Copyright © 2021 YIHAN HSIAO. All rights reserved.
+#====================================================
 import requests
 import json
 import feedparser
