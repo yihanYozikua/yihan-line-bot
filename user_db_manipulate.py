@@ -87,12 +87,15 @@ def modify_db( userId, key, new_value ):
 
 # delete specific key and value
 def delete_db( userId, key ):
-
+  
   return
 
 
 # find the value of specific key
 def query_db( userId, key ):
+  with open("./json/userDB/"+userId+".json", "r") as jjson:
+    jsonObj = json.load(jjson)
+    value = jsonObj[key]
   return value
 
 # user_db_manipulate.modify_db( "U1f3104a8e5bbe8ccf1c08e1412285500", "userName", "垂垂" )
