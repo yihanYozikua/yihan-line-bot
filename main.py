@@ -78,6 +78,11 @@ def handle_message(event):
     # create the user's DB when user start using (sending any type of message)
     if tools.find_files( userId+".json", "./json/userDB/" ) == False:
         user_db_manipulate.create_db( userId )
+        # create user's directory
+        path = os.path.join("./json/userDB/", userId)
+        os.mkdir( path )
+        print("=========== Finish INIT ===========")
+
 
     ### if user send sticker
     if event.message.type == "sticker":

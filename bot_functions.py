@@ -55,7 +55,7 @@ def add_new_tracker( web_url, userId ): # return a "FlexMssage"
   if web_image is None:
     web_image = crawl.find_all( "link", rel="icon" )[-1]["href"]
   else:
-    web_image = None
+    web_image = web_image["content"]
 
   tracker_to_insert = {
     "web_name": web_name,
@@ -81,11 +81,11 @@ def add_new_tracker( web_url, userId ): # return a "FlexMssage"
   user_db_manipulate.addElement_db( userId, "tracker_list", tracker_to_insert)
   ###================= insert new data to user's db END =================
 
-  ### create new tracker card
-  json_file_name = tools.create_tracker_card_json(web_info, web_url) # create new tracker card
+  ###================= create new tracker card ==========================
+  json_file_name = tools.create_tracker_card_json(web_info, web_url, userId) # create new tracker card
 
   return_array = []
-  FlexMessage = json.load( open("./json/website_list_cards/"+json_file_name, 'r', encoding = 'utf-8') )
+  FlexMessage = json.load( open("./json/userDB/"+userId+"/"+json_file_name, 'r', encoding = 'utf-8') )
   return_array.append( FlexSendMessage( 'web', FlexMessage ) )
   return return_array
 

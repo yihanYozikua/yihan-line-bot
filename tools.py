@@ -40,14 +40,21 @@ def crwaling_web(web_url):
 
     return crawl
 
-def create_tracker_card_json(web_info, web_url):
+def create_tracker_card_json(web_info, web_url, userId):
+  ### get user's data(DB)
+  with open("./json/userDB/"+userId+".json", "r") as data:
+    userData = json.load(data)
+    # find the latest data
+    index = len(userData["tracker_list"]) - 1
+    user_tracker_latest = userData["tracker_list"][index]
+
   ### extract web title by crawling
   crawl = crwaling_web(web_url)
   web_name = crawl.title.get_text() # title of the website(HTML)
 
   json_file_name = web_name + ".json"
 
-  with open("./json/template_card/website_card_template.json", "r") as ffrom, open("./json/website_list_cards/"+json_file_name, "w") as to:
+  with open("./json/template_card/website_card_template.json", "r") as ffrom, open("./json/userDB/"+userId+"/"+json_file_name, "w") as to:
     to_insert = json.load(ffrom)
 
     web_image = crawl.find( "meta", property="og:image" ) # web_image["content"]
@@ -57,23 +64,32 @@ def create_tracker_card_json(web_info, web_url):
     else:
       to_insert["hero"]["url"] = web_image["content"]
 
-    to_insert["hero"]["action"]["uri"] = web_url
-    to_insert["body"]["action"]["uri"] = web_url
-    to_insert["body"]["contents"][0]["text"] = web_name
-    to_insert["body"]["contents"][1]["text"] = web_url
-    to_insert["body"]["contents"][2]["contents"][1]["action"]["uri"] = web_info[0]['links'][0]['href']
-    to_insert["body"]["contents"][2]["contents"][1]["contents"][0]["text"] = web_info[0]['title']
-    to_insert["body"]["contents"][2]["contents"][1]["contents"][1]["text"] = web_info[0]['published']
-    to_insert["body"]["contents"][2]["contents"][2]["action"]["uri"] = web_info[1]['links'][0]['href']
-    to_insert["body"]["contents"][2]["contents"][2]["contents"][0]["text"] = web_info[1]['title']
-    to_insert["body"]["contents"][2]["contents"][2]["contents"][1]["text"] = web_info[1]['published']
+    to_insert["hero"]["action"]["uri"] = user_tracker_latest["web_url"] # web_url
+    to_insert["body"]["action"]["uri"] = user_tracker_latest["web_url"] # web_url
+    to_insert["body"]["contents"][0]["text"] = user_tracker_latest["web_name"] #web_name
+    to_insert["body"]["contents"][1]["text"] = user_tracker_latest["web_url"] # web_url1
+    to_insert["body"]["contents"][2]["contents"][1]["action"]["uri"] = user_tracker_latest["articles"][0]["article_url"] # article1's URL
+    to_insert["body"]["contents"][2]["contents"][1]["contents"][0]["text"] = user_tracker_latest["articles"][0]["title"] # article1's title
+    to_insert["body"]["contents"][2]["contents"][1]["contents"][1]["text"] = user_tracker_latest["articles"][0]["publish_date"] #article1's date
+    to_insert["body"]["contents"][2]["contents"][2]["action"]["uri"] = user_tracker_latest["articles"][1]["article_url"]
+    to_insert["body"]["contents"][2]["contents"][2]["contents"][0]["text"] = user_tracker_latest["articles"][1]["title"]
+    to_insert["body"]["contents"][2]["contents"][2]["contents"][1]["text"] = user_tracker_latest["articles"][1]["publish_date"]
 
 
     json.dump( to_insert, to )
   
   return json_file_name
 
-def create_articles_card():
+def create_articles_card(userId):
+  ### get user's data(DB)
+  with open("./json/userDB/"+userId+".json", "r") as data:
+    userData = json.load(data)
+    # find the latest data
+    index = len(userData["tracker_list"]) - 1
+    user_tracker_latest = userData["tracker_list"][index]
+
+
+
   with open( "./json/template_card/carousel_card_template.json", "r" ) as ffrom:
     output_json = json.load(ffrom)
 
