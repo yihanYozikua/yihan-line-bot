@@ -44,8 +44,8 @@ app = Flask(__name__)
 # trigger by existing "URL"
 def add_new_tracker( web_url ): # return a "FlexMssage" 
   web_info = RSSfeed.findRSS( web_url ) # get website info
-  json_file_name = "new.json" # new json file inorder to store new tracker info
-  tools.create_tracker_card_json(web_info, json_file_name, web_url) # create new tracker card
+  # json_file_name = "new.json" # new json file inorder to store new tracker info
+  json_file_name = tools.create_tracker_card_json(web_info, web_url) # create new tracker card
 
   return_array = []
   FlexMessage = json.load( open("./json/"+json_file_name, 'r', encoding = 'utf-8') )
