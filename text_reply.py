@@ -66,7 +66,7 @@ def text_reply_message(user_message):
             # split the "user_message" to get which website that user want to get
             ### split user_message ###
         
-            # print(user_db_manipulate.query_db( "U1f3104a8e5bbe8ccf1c08e1412285500", "userName"))
+            user_db_manipulate.modify_db( "U1f3104a8e5bbe8ccf1c08e1412285500", "userName", "蕭伊涵")
 
             # call function to get articles' cards
             return_message_array = bot_functions.show_articles_card( user_message )

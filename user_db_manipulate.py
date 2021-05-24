@@ -62,27 +62,12 @@ def create_db( userId ):
 def modify_db( userId, key, new_value ):
   origin_file = "./json/userDB/"+userId+".json"
   new_file = "./json/userDB/"+userId+"_new.json"
-  with open(origin_file, "r") as origin, open(new_file, "w") as new:
+
+  with open(origin_file, "r") as origin:
     origin_modify = json.load(origin)
     origin_modify[key] = new_value
-    json.dump( origin_modify, new )
-
-  ## delete origin file
-  try:
-    os.remove( origin_file )
-  except OSError as e:
-    print(e)
-
-  ## copy new to origin
-  with open(new_file, "r") as origin, open(origin_file, "w") as new:
-    origin_modify = json.load(origin)
-    json.dump( origin_modify, new )
-
-  ## delete new
-  try:
-    os.remove( new_file )
-  except OSError as e:
-    print(e)
+  with open(origin_file, 'w') as new:
+    json.dump(origin_modify, new)
 
 
 # delete specific key and value
