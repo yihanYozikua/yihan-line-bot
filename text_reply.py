@@ -63,8 +63,6 @@ def text_reply_message(user_message, userId):
                         # remind the user that he/she has already track the URL
                         return_message_array.append( TextSendMessage(text="這個網誌您已有追蹤囉！") )
 
-                        # show this tracker card
-                            ### write code here ###
                         # show tracker list (carousel)
                         carousel_container = {
                             "type": "carousel",

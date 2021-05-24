@@ -107,12 +107,6 @@ def create_articles_card(userId):
 
 # Add one bubble into carousel
 def generate_carousel_cards(userId, carousel_container, bubble):
-  # carousel_container = {
-  #   "type": "carousel",
-  #   "contents":[
-  #   ]
-  # }
-  ### data[where_to_insert].append( bubble )
   carousel_container["contents"].append(bubble)
   return carousel_container
 
