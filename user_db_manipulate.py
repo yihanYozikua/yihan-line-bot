@@ -72,7 +72,28 @@ def modify_db( userId, key, new_value ):
 
 # delete specific key and value
 def delete_db( userId, key ):
+  origin_file = "./json/userDB/"+userId+".json"
   
+  with open(origin_file) as data_file:
+    data = json.load(data_file)
+
+  data.pop(key)
+
+  with open(origin_file, 'w') as data_file:
+    data = json.dump(data, data_file)
+
+  # with open(origin_file, "r") as origin:
+  #   origin_modify = json.load(origin)
+  
+  # ## delete element
+  # for element in origin_modify:
+  #   element.pop(key, None)
+  
+  # with open(origin_file, "w") as new:
+  #   json.dump(origin_modify, new)
+
+
+def addElement_db():
   return
 
 
