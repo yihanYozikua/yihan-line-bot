@@ -15,8 +15,11 @@ from linebot.exceptions import (
 from linebot.models import *
 
 #---------------- self define variables ----------------
+import text_reply as text_push
 import RSSfeed as RSSfeed
 import tools as tools
+import bot_functions as bot_functions
+import user_db_manipulate as user_db_manipulate
 
 from config import *
 #---------------- line settings ----------------

@@ -14,6 +14,7 @@ import re
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import urllib
+import os
 
 from werkzeug.exceptions import RequestURITooLarge
 
@@ -38,7 +39,6 @@ def crwaling_web(web_url):
     crawl = BeautifulSoup(urllib.request.urlopen(crawl_1), 'html.parser')
 
     return crawl
-
 
 def create_tracker_card_json(web_info, web_url):
   ### extract web title by crawling
@@ -100,3 +100,15 @@ def analyze_text( input_text, pattern ): # find if the input text is matched to 
     analysis = True
     return analysis
 
+def find_files(filename, search_path):
+  search_result = []
+  # Walking through top-down from the root
+  for root, dir, files in os.walk(search_path):
+    if filename in files:
+      search_result.append(os.path.join(root, filename))
+  if len( search_result ) > 0:
+    result = True
+  else:
+    result = False
+    
+  return result

@@ -23,12 +23,14 @@ from io import StringIO
 import requests
 import random
 import json
+import os
 
 #---------------- custom module ----------------
 import text_push as text_push
 import text_reply as text_reply
 import RSSfeed as RSSfeed
 import tools as tools
+import user_db_manipulate as user_db_manipulate
 
 from config import *
 #---------------- line settings ----------------
@@ -67,12 +69,17 @@ def handle_message(event):
     # event_json = json.loads(str(event))
 
     # PARAMETERS
-    # userId = event_json["source"]["userId"] # get user id
     userId = event.source.user_id   # get user's id
     line_bot_api.get_profile(userId) # get user's profile ## displayName | language | pictureUrl | userId
     start_tutorial_key_word = ".*開始試用.*"
     reply_message_arr = [] # make sure that the reply_message_array always be empty when init
 
+    ### CREATE user's DB(json file) if it is not existing
+    # create the user's DB when user start using (sending any type of message)
+    if tools.find_files( userId+".json", "./json/userDB/" ) == False:
+        user_db_manipulate.create_db( userId )
+
+    ### if user send sticker
     if event.message.type == "sticker":
         reply_message_arr.append(StickerSendMessage(
             package_id='11537',
@@ -80,7 +87,7 @@ def handle_message(event):
         ))
         line_bot_api.reply_message(event.reply_token, reply_message_arr) 
 
-
+    ### if user send text
     elif event.message.type == "text":
         try: # typeof(URL) = URL
             req = requests.get( event.message.text )
@@ -110,8 +117,10 @@ def handle_message(event):
 
         line_bot_api.reply_message(event.reply_token, reply_message_arr)
         
-        
-
+    ### if user send other types of message (img, video, location,...)
+    else:
+        reply_message_arr.append( TextSendMessage(text="請傳送文字訊息唷！") )
+        line_bot_api.reply_message(event.reply_token, reply_message_arr)
         
         
 
@@ -121,3 +130,5 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
+
+    

@@ -1,26 +1,13 @@
 {
-  "userId": "163782932324325",
+  "userId": "",
+  "userName":"",
+  "status":"tutorial",
   "tracker_list":[
     {
-      "web_name": "NAME",
-      "web_url": "HTTPS://URL.COM",
-      "web_RSS_url":"HTTPS://URL.COM/feed",
-      "img_show": "HTTPS://URL.COM/IMG.jpeg",
-      "articles":[
-        {
-          "title": "ARTICLE TITLE",
-          "publish_date":"DD/MM/YY",
-          "web_host_url":"HTTPS://URL.COM",
-          "article_url":"HTTPS://URL.COM/ARTICLE",
-          "summary":"texttexttexttexttexttexttexttexttexttexttexttext"
-        }
-      ]
-    },
-    {
-      "web_name": "NAME",
-      "web_url": "HTTPS://URL.COM",
-      "web_RSS_url":"HTTPS://URL.COM/feed",
-      "img_show": "HTTPS://URL.COM/IMG.jpeg",
+      "web_name": "",
+      "web_url": "",
+      "web_RSS_url":"",
+      "img_show": "",
       "articles":[
         {
           "title": "ARTICLE TITLE",

@@ -18,15 +18,16 @@ from linebot.models import *
 import json
 import requests
 import re
+import os
 
 #---------------- custom module ----------------
 import text_push as text_push
 import RSSfeed as RSSfeed
 import tools as tools
 import bot_functions as bot_functions
+import user_db_manipulate as user_db_manipulate
 
 from config import *
-
 #---------------- global variables ----------------
 
 # set user's usage status, default = tutorial, other = common_using
@@ -101,7 +102,15 @@ def text_reply_message(user_message):
 
         ### 不認識的指令 Exception Handler
         else:
-            return_message_array.append( TextSendMessage(text="咦這個指令沒看過耶"))
+            return_message_array.append( TextSendMessage(text="咦這個指令沒看過耶🤔"))
+            return_message_array.append( TextSendMessage(text="請點選以下指令、或直接輸入網址唷！",
+                                                            quick_reply=QuickReply(items=[
+                                                                            QuickReplyButton(
+                                                                                action=MessageAction(
+                                                                                    label="查看追蹤列表", 
+                                                                                    text="查看追蹤列表")),
+                                                                        ])) )
+            
 
     return return_message_array # because the amount of reply sometimes > 1, so return the array type
 

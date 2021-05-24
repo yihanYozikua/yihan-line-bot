@@ -1,6 +1,6 @@
 #====================================================
 # bot_functions.py
-## main functions of this bot
+## 4 functions of this bot
 # YIHAN LINE BOT
 
 # Created by YIHAN HISAO on May 21, 2021.
@@ -25,11 +25,14 @@ import requests
 import random
 import json
 import re
+import os
 
 #---------------- custom module ----------------
+import text_reply as text_reply
 import text_push as text_push
 import RSSfeed as RSSfeed
 import tools as tools
+import user_db_manipulate as user_db_manipulate
 
 from config import *
 #---------------- line settings ----------------
