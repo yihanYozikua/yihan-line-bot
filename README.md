@@ -53,31 +53,31 @@ LINE@: @847kutjv
 
 ## Features Demo
 ### Add Blog tracker
-    <div>
-         <img src="https://i.imgur.com/GpNklLz.jpg" alt="Add-Blog-tracker" width="50%" height="50%"/> 
-    </div>
+<div>
+     <img src="https://i.imgur.com/GpNklLz.jpg" alt="Add-Blog-tracker" width="50%" height="50%"/> 
+</div>
 ### Check the latest articles
-    <div>
-         <img src="https://i.imgur.com/oXer4eg.png" alt="check-latest-articles" width="50%" height="50%"/> 
-    </div>
-* Check the tracking list
-    <div>
-         <img src="https://i.imgur.com/G9BEOAU.png" alt="chech-tracking-list" width="50%" height="50%"/> 
-    </div>
-* Cancel tracking (Delete tracker)
-    <div>
-         <img src="https://i.imgur.com/hBQTqOi.png" alt="cancel-tracking" width="50%" height="50%"/> 
-    </div>
-* Exception Handler
-    * Avoid repeating add
-        <div>
-         <img src="https://i.imgur.com/uWr4qHW.png" alt="avoid-repeating-add" width="50%" height="50%"/> 
-        </div>
-    * Guide to enter the correct keywords
-        <div>
-         <img src="https://i.imgur.com/Aw6RR5D.png" alt="guide-enter-correct" width="50%" height="50%"/> 
-        </div>
-    * Error remind
-        <div>
-         <img src="https://i.imgur.com/vKPcE1T.png" alt="error-remind" width="50%" height="50%"/> 
-        </div>
+<div>
+     <img src="https://i.imgur.com/oXer4eg.png" alt="check-latest-articles" width="50%" height="50%"/> 
+</div>
+### Check the tracking list
+<div>
+     <img src="https://i.imgur.com/G9BEOAU.png" alt="chech-tracking-list" width="50%" height="50%"/> 
+</div>
+### Cancel tracking (Delete tracker)
+<div>
+     <img src="https://i.imgur.com/hBQTqOi.png" alt="cancel-tracking" width="50%" height="50%"/> 
+</div>
+### Exception Handler
+#### Avoid repeating add
+<div>
+ <img src="https://i.imgur.com/uWr4qHW.png" alt="avoid-repeating-add" width="50%" height="50%"/> 
+</div>
+#### Guide to enter the correct keywords
+<div>
+ <img src="https://i.imgur.com/Aw6RR5D.png" alt="guide-enter-correct" width="50%" height="50%"/> 
+</div>
+#### Error remind
+<div>
+ <img src="https://i.imgur.com/vKPcE1T.png" alt="error-remind" width="50%" height="50%"/> 
+</div>
