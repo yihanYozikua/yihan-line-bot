@@ -1,5 +1,5 @@
 # 💌 網頁追蹤器YI  (LINE Bot)💌
-![](https://img.shields.io/badge/python-v3.8-blue)
+![](https://img.shields.io/badge/python-v3.8-blue) ![](https://img.shields.io/badge/LICENSE-MIT-brightgreen)
 
 > **Blog TrackerYI**
 <!-- ## Table of Contents -->
