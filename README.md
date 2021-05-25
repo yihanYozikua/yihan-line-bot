@@ -56,18 +56,22 @@ LINE@: @847kutjv
 <div>
      <img src="https://i.imgur.com/GpNklLz.jpg" alt="Add-Blog-tracker" width="50%" height="50%"/> 
 </div>
+
 ### Check the latest articles
 <div>
      <img src="https://i.imgur.com/oXer4eg.png" alt="check-latest-articles" width="50%" height="50%"/> 
 </div>
+
 ### Check the tracking list
 <div>
      <img src="https://i.imgur.com/G9BEOAU.png" alt="chech-tracking-list" width="50%" height="50%"/> 
 </div>
+
 ### Cancel tracking (Delete tracker)
 <div>
      <img src="https://i.imgur.com/hBQTqOi.png" alt="cancel-tracking" width="50%" height="50%"/> 
 </div>
+
 ### Exception Handler
 #### Avoid repeating add
 <div>
