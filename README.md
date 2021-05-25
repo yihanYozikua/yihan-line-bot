@@ -8,7 +8,7 @@
 
 Since searching online becomes the most common method to gain information or knowledge, web pages are inseparable from our daily lives.
 Blog is one of the web pages. Medium, news, iThome, ..., there are more and more blogs we would like to read and subscribe, and each one has its "subscription button" for us to press. Soon after we press the button, the blog will start to send newsletter frantically to our Email until we finally can't stand it and want to unsubscribe.
-If we could subscribe them all in only one place, 
+Therefore, in this LINE Bot, I try to make the user can subscribe them all in only one place, unsubscribe easily, and say goodbye to annoying newsletters!
 
 ---
 There are **4 features** in this LINE Bot:
