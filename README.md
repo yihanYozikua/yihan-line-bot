@@ -53,7 +53,8 @@ LINE@: @847kutjv
 
 ## Demo Screenshot
 * Add Blog tracker
-    ![](https://i.imgur.com/GpNklLz.jpg)
+    <img src="https://i.imgur.com/GpNklLz.jpg" alt="Add-Blog-tracker" width="50%" height="50%"/> 
+    ![]()
 * Check the latest articles
     ![](https://i.imgur.com/oXer4eg.png)
 * Check the tracking list
