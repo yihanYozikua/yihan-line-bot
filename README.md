@@ -73,10 +73,12 @@ LINE@: @847kutjv
 <div>
  <img src="https://i.imgur.com/uWr4qHW.png" alt="avoid-repeating-add" width="50%" height="50%"/> 
 </div>
+
 #### Guide to enter the correct keywords
 <div>
  <img src="https://i.imgur.com/Aw6RR5D.png" alt="guide-enter-correct" width="50%" height="50%"/> 
 </div>
+
 #### Error remind
 <div>
  <img src="https://i.imgur.com/vKPcE1T.png" alt="error-remind" width="50%" height="50%"/> 
