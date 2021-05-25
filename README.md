@@ -6,6 +6,10 @@
 > * [Reference](#reference)
 > * [Features Demo](#features-demo)
 >    * [Add Blog Tracker](#add-blog-tracker)
+>    * [Check the latest articles](#Check-the-latest-articles)
+>    * [Check the tracking list](#Check-the-tracking-list)
+>    * [Cancel tracking (Delete tracker)](#Cancel-tracking-Delete-tracker)
+>    * [Exception Handler](#Exception-handler)
 
 Since searching online becomes the most common method to gain information or knowledge, web pages are inseparable from our daily lives.
 Blog is one of the web pages. Medium, news, iThome, ..., there are more and more blogs we would like to read and subscribe, and each one has its "subscription button" for us to press. Soon after we press the button, the blog will start to send newsletter frantically to our Email until we finally can't stand it and want to unsubscribe.
