@@ -1,14 +1,69 @@
-# 💌 網頁追蹤器YI 💌
-> 4 features in this LINE Bot !
+# 💌 網頁追蹤器YI  (LINE Bot)💌
+> **Blog TrackerYI**
+<!-- ## Table of Contents -->
+> * [Dev Tools](#dev-tools)
+> * [Files Description](#files-description)
+> * [Reference](#reference)
+> * [Demo Screenshot](#demo-screenshot)
 
-Welcome play!
+Since searching online becomes the most common method to gain information or knowledge, web pages are inseparable from our daily lives.
+Blog is one of the web pages. Medium, news, iThome, ..., there are more and more blogs we would like to read and subscribe, and each one has its "subscription button" for us to press. Soon after we press the button, the blog will start to send newsletter frantically to our Email until we finally can't stand it and want to unsubscribe.
+If we could subscribe them all in only one place, 
+
+---
+There are **4 features** in this LINE Bot:
+1. Add Blog tracker
+2. Check the latest articles
+3. Check the tracking list
+4. Cancel tracking (Delete tracker)
+
+---
+
+From now on, you no longer need to endure annoying newsletters and inconvenient ways to unsubscribe, **Welcome play!**
 ```
 LINE@: @847kutjv
 ```
+![](https://i.imgur.com/t1bSRu9.png)
 
-<!-- ## Table of Contents -->
-* [How to Use](#how-to-use)
-* [User flows](#user-flows)
-* [Dev Tools](#dev-tools)
 
-## 
+
+
+
+## Dev Tools
+* **Python3.8**
+* **LINE Bot**：LINE Official Message API
+* **Flask**：Backend
+* **[Feedsearch API](https://feedsearch.dev/)**：Find blog's RSS feed url
+* **[Feedparser](https://pythonhosted.org/feedparser/)**：Parse the RSS blog
+* **[BeautifulSoup(bs4)](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)**：Web Crawler
+
+
+## Files Description
+* **main.py**：Handler, link to Port
+* **text_reply.py**：Decide the response according to the user's input text
+* **text_push.py**：Push message, unused
+* **bot_function.py**：Implement the main 4 features of this LINE Bot
+* **RSSfeed.py**：Find RSS url and parse it
+* **tools.py**：Basic tool functions which are commonly used
+* **user_db_manipulate.py**：Basic manipulations of DB
+
+## Reference
+* [LINE Bot Python SDK](https://github.com/line/line-bot-sdk-python)
+* [LINE Message API Documentation](https://developers.line.biz/en/docs/messaging-api/)
+
+## Demo Screenshot
+* Add Blog tracker
+    ![](https://i.imgur.com/GpNklLz.jpg)
+* Check the latest articles
+    ![](https://i.imgur.com/oXer4eg.png)
+* Check the tracking list
+    ![](https://i.imgur.com/G9BEOAU.png)
+* Cancel tracking (Delete tracker)
+    ![](https://i.imgur.com/hBQTqOi.png)
+* Exception Handler
+    * Avoid repeating add
+        ![](https://i.imgur.com/uWr4qHW.png)
+    * Guide to enter the correct keywords
+        ![](https://i.imgur.com/Aw6RR5D.png)
+    * Error remind
+        ![](https://i.imgur.com/vKPcE1T.png)
