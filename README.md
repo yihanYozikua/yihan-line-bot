@@ -1,4 +1,6 @@
 # 💌 網頁追蹤器YI  (LINE Bot)💌
+https://img.shields.io/badge/python-v3.8-blue
+
 > **Blog TrackerYI**
 <!-- ## Table of Contents -->
 > * [Dev Tools](#dev-tools)
