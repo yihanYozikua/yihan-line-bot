@@ -53,17 +53,31 @@ LINE@: @847kutjv
 
 ## Demo Screenshot
 * Add Blog tracker
-    ![](https://i.imgur.com/GpNklLz.jpg)
+    <div>
+         <img src="https://i.imgur.com/GpNklLz.jpg" alt="Add-Blog-tracker" width="50%" height="50%"/> 
+    </div>
 * Check the latest articles
-    ![](https://i.imgur.com/oXer4eg.png)
+    <div>
+         <img src="https://i.imgur.com/oXer4eg.png" alt="check-latest-articles" width="50%" height="50%"/> 
+    </div>
 * Check the tracking list
-    ![](https://i.imgur.com/G9BEOAU.png)
+    <div>
+         <img src="https://i.imgur.com/G9BEOAU.png" alt="chech-tracking-list" width="50%" height="50%"/> 
+    </div>
 * Cancel tracking (Delete tracker)
-    ![](https://i.imgur.com/hBQTqOi.png)
+    <div>
+         <img src="https://i.imgur.com/hBQTqOi.png" alt="cancel-tracking" width="50%" height="50%"/> 
+    </div>
 * Exception Handler
     * Avoid repeating add
-        ![](https://i.imgur.com/uWr4qHW.png)
+        <div>
+         <img src="https://i.imgur.com/uWr4qHW.png" alt="avoid-repeating-add" width="50%" height="50%"/> 
+        </div>
     * Guide to enter the correct keywords
-        ![](https://i.imgur.com/Aw6RR5D.png)
+        <div>
+         <img src="https://i.imgur.com/Aw6RR5D.png" alt="guide-enter-correct" width="50%" height="50%"/> 
+        </div>
     * Error remind
-        ![](https://i.imgur.com/vKPcE1T.png)
+        <div>
+         <img src="https://i.imgur.com/vKPcE1T.png" alt="error-remind" width="50%" height="50%"/> 
+        </div>
