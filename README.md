@@ -4,7 +4,7 @@
 > * [Dev Tools](#dev-tools)
 > * [Files Description](#files-description)
 > * [Reference](#reference)
-> * [Demo Screenshot](#demo-screenshot)
+> * [Features Demo](#features-demo)
 
 Since searching online becomes the most common method to gain information or knowledge, web pages are inseparable from our daily lives.
 Blog is one of the web pages. Medium, news, iThome, ..., there are more and more blogs we would like to read and subscribe, and each one has its "subscription button" for us to press. Soon after we press the button, the blog will start to send newsletter frantically to our Email until we finally can't stand it and want to unsubscribe.
@@ -51,12 +51,12 @@ LINE@: @847kutjv
 * [LINE Bot Python SDK](https://github.com/line/line-bot-sdk-python)
 * [LINE Message API Documentation](https://developers.line.biz/en/docs/messaging-api/)
 
-## Demo Screenshot
-* Add Blog tracker
+## Features Demo
+### Add Blog tracker
     <div>
          <img src="https://i.imgur.com/GpNklLz.jpg" alt="Add-Blog-tracker" width="50%" height="50%"/> 
     </div>
-* Check the latest articles
+### Check the latest articles
     <div>
          <img src="https://i.imgur.com/oXer4eg.png" alt="check-latest-articles" width="50%" height="50%"/> 
     </div>
