@@ -123,7 +123,7 @@
           "label": "按我看文章列表",
           "text": "WEBSITE NAME 文章列表"
         },
-        "color": "#999999",
+        "color": "#00e6738c",
         "style": "primary",
         "gravity": "center"
       },
@@ -134,7 +134,7 @@
           "label": "取消追蹤",
           "text": "取消追蹤{Web Name}"
         },
-        "color": "#ffcccc",
+        "color": "#d9d9d9",
         "margin": "md"
       }
     ]
