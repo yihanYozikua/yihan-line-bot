@@ -4,7 +4,7 @@ Image
 requests
 datetime
 bs4
-beautifulsoup4
+# beautifulsoup4
 feedparser
-re
-urllib
+# urllib
+# re
