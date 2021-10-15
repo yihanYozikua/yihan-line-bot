@@ -1,4 +1,4 @@
-line-bot-sdk
+line-bot-sdk==1.19.0
 flask
 Image
 requests
